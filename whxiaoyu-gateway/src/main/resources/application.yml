@@ -1,0 +1,26 @@
+server:
+  port: 4010
+
+spring:
+  application:
+    name: whxiaoyu-gateway
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.188:8848
+
+# 开启sentinel熔断
+feign:
+  sentinel:
+    enabled: true
+
+  httpclient:
+    enabled: false
+
+  # 启用okhttp连接
+  okhttp:
+    enabled: true
+
+
+
