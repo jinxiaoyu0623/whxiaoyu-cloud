@@ -7,7 +7,6 @@ import org.springframework.cglib.proxy.Enhancer;
 
 /**
  * @author jinxiaoyu
- * @date 2020/08/17 17:00
  */
 @RequiredArgsConstructor
 public class FeignFallbackFactory<T> implements FallbackFactory<T> {
@@ -23,7 +22,7 @@ public class FeignFallbackFactory<T> implements FallbackFactory<T> {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(targetType);
         enhancer.setUseCache(true);
-        enhancer.setCallback(new FeignFallback<>(targetType, targetName, throwable));
+        enhancer.setCallback(new GlobalFeignFallback<>(targetType, targetName, throwable));
         return (T) enhancer.create();
     }
 }

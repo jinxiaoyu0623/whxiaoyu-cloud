@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>whxiaoyu-common-sentinel</artifactId>
+    <artifactId>whxiaoyu-common-feign-sentinel</artifactId>
     <description>熔断组件</description>
     <packaging>jar</packaging>
 

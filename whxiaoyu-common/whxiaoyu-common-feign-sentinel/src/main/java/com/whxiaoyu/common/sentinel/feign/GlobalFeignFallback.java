@@ -9,13 +9,12 @@ import org.springframework.cglib.proxy.MethodProxy;
 import java.lang.reflect.Method;
 
 /**
- * 全局feign异常处理
+ * feign异常处理
  * @author jinxiaoyu
- * @date 2020/08/17 17:12
  */
 @Slf4j
 @RequiredArgsConstructor
-public class FeignFallback<T> implements MethodInterceptor {
+public class GlobalFeignFallback<T> implements MethodInterceptor {
 
     private final Class<T> targetType;
     private final String targetName;

@@ -1,6 +1,7 @@
 package com.whxiaoyu.common.sentinel.feign;
 
 import com.alibaba.cloud.sentinel.feign.SentinelContractHolder;
+import com.alibaba.cloud.sentinel.feign.SentinelInvocationHandler;
 import feign.Contract;
 import feign.Feign;
 import feign.InvocationHandlerFactory;
@@ -22,14 +23,14 @@ import java.util.Map;
  * @author jinxiaoyu
  * @date 2020/08/18 08:56
  */
-public class CustomSentinelFeign {
+public class CustomizeSentinelFeign {
 
-    public CustomSentinelFeign() {
+    public CustomizeSentinelFeign() {
 
     }
 
-    public static CustomSentinelFeign.Builder builder() {
-        return new CustomSentinelFeign.Builder();
+    public static CustomizeSentinelFeign.Builder builder() {
+        return new CustomizeSentinelFeign.Builder();
     }
 
     public static final class Builder extends Feign.Builder implements ApplicationContextAware {
@@ -47,7 +48,7 @@ public class CustomSentinelFeign {
         }
 
         @Override
-        public CustomSentinelFeign.Builder contract(Contract contract) {
+        public CustomizeSentinelFeign.Builder contract(Contract contract) {
             this.contract = contract;
             return this;
         }
@@ -62,7 +63,7 @@ public class CustomSentinelFeign {
                     // using reflect get fallback and fallbackFactory properties from
                     // FeignClientFactoryBean because FeignClientFactoryBean is a package
                     // level class, we can not use it in our package
-                    Object feignClientFactoryBean = CustomSentinelFeign.Builder.this.applicationContext
+                    Object feignClientFactoryBean = CustomizeSentinelFeign.Builder.this.applicationContext
                             .getBean("&" + target.type().getName());
 
                     Class fallback = (Class) getFieldValue(feignClientFactoryBean,
@@ -81,18 +82,18 @@ public class CustomSentinelFeign {
                     if (void.class != fallback) {
                         fallbackInstance = getFromContext(beanName, "fallback", fallback,
                                 target.type());
-                        return new CustomSentinelInvocationHandler(target, dispatch, new FallbackFactory.Default(fallbackInstance));
+                        return new CustomizeSentinelInvocationHandler(target, dispatch, new FallbackFactory.Default(fallbackInstance));
                     }
                     if (void.class != fallbackFactory) {
                         fallbackFactoryInstance = (FallbackFactory) getFromContext(
                                 beanName, "fallbackFactory", fallbackFactory,
                                 FallbackFactory.class);
-                        return new CustomSentinelInvocationHandler(target, dispatch,
+                        return new CustomizeSentinelInvocationHandler(target, dispatch,
                                 fallbackFactoryInstance);
                     }
                     //set global fallback factory
                     FeignFallbackFactory feignFallbackFactory = new FeignFallbackFactory(target);
-                    return new CustomSentinelInvocationHandler(target, dispatch,feignFallbackFactory);
+                    return new CustomizeSentinelInvocationHandler(target, dispatch,feignFallbackFactory);
                 }
 
                 private Object getFromContext(String name, String type,

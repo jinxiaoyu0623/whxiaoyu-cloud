@@ -24,9 +24,8 @@ import static feign.Util.checkNotNull;
 
 /**
  * @author jinxiaoyu
- * @date 2020/08/18 09:13
  */
-public class CustomSentinelInvocationHandler implements InvocationHandler {
+public class CustomizeSentinelInvocationHandler implements InvocationHandler {
 
     private final Target<?> target;
 
@@ -36,15 +35,15 @@ public class CustomSentinelInvocationHandler implements InvocationHandler {
 
     private Map<Method, Method> fallbackMethodMap;
 
-    CustomSentinelInvocationHandler(Target<?> target, Map<Method, InvocationHandlerFactory.MethodHandler> dispatch,
-                              FallbackFactory fallbackFactory) {
+    CustomizeSentinelInvocationHandler(Target<?> target, Map<Method, InvocationHandlerFactory.MethodHandler> dispatch,
+                                       FallbackFactory fallbackFactory) {
         this.target = checkNotNull(target, "target");
         this.dispatch = checkNotNull(dispatch, "dispatch");
         this.fallbackFactory = fallbackFactory;
         this.fallbackMethodMap = toFallbackMethod(dispatch);
     }
 
-    CustomSentinelInvocationHandler(Target<?> target, Map<Method, InvocationHandlerFactory.MethodHandler> dispatch) {
+    CustomizeSentinelInvocationHandler(Target<?> target, Map<Method, InvocationHandlerFactory.MethodHandler> dispatch) {
         this.target = checkNotNull(target, "target");
         this.dispatch = checkNotNull(dispatch, "dispatch");
     }
@@ -133,8 +132,8 @@ public class CustomSentinelInvocationHandler implements InvocationHandler {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof CustomSentinelInvocationHandler) {
-            CustomSentinelInvocationHandler other = (CustomSentinelInvocationHandler) obj;
+        if (obj instanceof CustomizeSentinelInvocationHandler) {
+            CustomizeSentinelInvocationHandler other = (CustomizeSentinelInvocationHandler) obj;
             return target.equals(other.target);
         }
         return false;
