@@ -2,9 +2,8 @@ package com.whxiaoyu.uc.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.whxiaoyu.common.core.dto.UserDto;
-import com.whxiaoyu.common.core.enums.AuthErrorType;
-import com.whxiaoyu.common.core.enums.SystemErrorType;
-import com.whxiaoyu.common.core.exception.CustomException;
+import com.whxiaoyu.common.core.enums.AuthErrorTypeEnum;
+import com.whxiaoyu.common.core.exception.CustomizeException;
 import com.whxiaoyu.uc.entity.SysUser;
 import com.whxiaoyu.uc.mapper.SysUserMapper;
 import com.whxiaoyu.uc.service.ISysUserService;
@@ -27,7 +26,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public UserDto getUserDtoByUsername(String username) {
         SysUser sysUser = this.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername,username));
         if (sysUser == null) {
-            throw new CustomException(AuthErrorType.USERNAME_NOT_FOUND);
+            throw new CustomizeException(AuthErrorTypeEnum.USERNAME_NOT_FOUND);
         }
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(sysUser,userDto);

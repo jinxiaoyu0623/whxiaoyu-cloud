@@ -1,4 +1,4 @@
-package com.whxiaoyu.common.core.enums;
+package com.whxiaoyu.common.core.exception;
 
 /**
  * 程序错误类型
@@ -10,7 +10,7 @@ public interface ErrorType {
      * 返回错误code
      * @return 错误码
      */
-    String getCode();
+    int getCode();
 
     /**
      * 返回错误信息

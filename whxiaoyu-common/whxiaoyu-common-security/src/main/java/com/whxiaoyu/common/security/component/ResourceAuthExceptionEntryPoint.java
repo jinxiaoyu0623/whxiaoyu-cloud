@@ -18,7 +18,7 @@ package com.whxiaoyu.common.security.component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.whxiaoyu.common.core.dto.ResultDto;
-import com.whxiaoyu.common.core.enums.AuthErrorType;
+import com.whxiaoyu.common.core.enums.AuthErrorTypeEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
@@ -52,7 +52,7 @@ public class ResourceAuthExceptionEntryPoint implements AuthenticationEntryPoint
 		if (authException.getCause() instanceof OAuth2Exception) {
 			result = ResultDto.error(String.valueOf(HttpStatus.UNAUTHORIZED.value()),((OAuth2Exception) authException.getCause()).getOAuth2ErrorCode());
 		} else {
-			result = ResultDto.error(AuthErrorType.INSUFFICIENT_SCOPE);
+			result = ResultDto.error(AuthErrorTypeEnum.INSUFFICIENT_SCOPE);
 		}
 		printWriter.append(objectMapper.writeValueAsString(result));
 	}

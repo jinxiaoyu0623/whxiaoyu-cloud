@@ -44,7 +44,7 @@ public final class CommonConstants {
 	/**
 	 * 成功标记
 	 */
-	public static final String SUCCESS = "200";
+	public static final int SUCCESS = 200;
 
 	/**
 	 * 处理成功消息

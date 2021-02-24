@@ -14,7 +14,7 @@
 
     <modules>
         <module>whxiaoyu-common-core</module>
-        <module>whxiaoyu-common-sentinel</module>
+        <module>whxiaoyu-common-feign-sentinel</module>
         <module>whxiaoyu-common-security</module>
     </modules>
 

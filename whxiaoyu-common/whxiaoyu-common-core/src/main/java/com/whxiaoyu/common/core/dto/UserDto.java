@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 /**
  * @author jinxiaoyu
- * @date 2020/08/14 10:41
  */
 @Data
 public class UserDto implements Serializable {

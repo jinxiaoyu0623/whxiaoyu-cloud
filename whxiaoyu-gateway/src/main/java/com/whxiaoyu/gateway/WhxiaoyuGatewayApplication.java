@@ -1,11 +1,11 @@
 package com.whxiaoyu.gateway;
 
+import com.whxiaoyu.common.sentinel.feign.EnableCustomizeFeignClients;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@EnableFeignClients(basePackages = {"com.whxiaoyu.uc.feign"})
+@EnableCustomizeFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
 public class WhxiaoyuGatewayApplication {

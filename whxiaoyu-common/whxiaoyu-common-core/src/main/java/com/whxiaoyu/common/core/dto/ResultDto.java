@@ -2,11 +2,13 @@ package com.whxiaoyu.common.core.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.whxiaoyu.common.core.constant.CommonConstants;
-import com.whxiaoyu.common.core.enums.ErrorType;
-import com.whxiaoyu.common.core.enums.SystemErrorType;
-import com.whxiaoyu.common.core.exception.CustomException;
+import com.whxiaoyu.common.core.exception.ErrorType;
+import com.whxiaoyu.common.core.enums.SystemErrorTypeEnum;
+import com.whxiaoyu.common.core.exception.CustomizeException;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * 统一返回结果处理
@@ -14,9 +16,11 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class ResultDto<T> {
+public class ResultDto<T> implements Serializable {
 
-    private String code;
+    private static final long serialVersionUID = -7440048446121729329L;
+
+    private int code;
 
     private String msg;
 
@@ -36,7 +40,7 @@ public class ResultDto<T> {
         this.data = data;
     }
 
-    private ResultDto(String code, String msg, T data) {
+    private ResultDto(int code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
@@ -49,7 +53,7 @@ public class ResultDto<T> {
      * @param data 数据对象
      * @return result
      */
-    public static <T> ResultDto<T> ok(String code,String msg,T data) {
+    public static <T> ResultDto<T> ok(int code,String msg,T data) {
         return new ResultDto<>(code, msg, data);
     }
 
@@ -85,8 +89,8 @@ public class ResultDto<T> {
      * @param exception ex
      * @return result
      */
-    public static <T> ResultDto<T> error(CustomException exception) {
-        return new ResultDto<>(exception.getErrorType());
+    public static <T> ResultDto<T> error(CustomizeException exception) {
+        return error(exception.getErrorType());
     }
 
     /**
@@ -94,7 +98,7 @@ public class ResultDto<T> {
      * @return Result
      */
     public static <T> ResultDto<T> error() {
-        return error(SystemErrorType.SYSTEM_ERROR);
+        return error(SystemErrorTypeEnum.SYSTEM_ERROR);
     }
 
     /**
@@ -103,7 +107,7 @@ public class ResultDto<T> {
      * @param msg 错误消息
      * @return Result
      */
-    public static <T> ResultDto<T> error(String code,String msg) {
+    public static <T> ResultDto<T> error(int code,String msg) {
         return new ResultDto<>(code,msg,null);
     }
 
