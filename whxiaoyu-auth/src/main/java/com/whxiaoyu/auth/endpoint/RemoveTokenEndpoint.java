@@ -1,5 +1,7 @@
 package com.whxiaoyu.auth.endpoint;
 
+import com.whxiaoyu.common.core.dto.ResultDto;
+import com.whxiaoyu.common.core.enums.AuthErrorTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -7,6 +9,8 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 移除token
  * @author jinxiaoyu
- * @date 2019/11/21 11:35
  */
 @RequiredArgsConstructor
 @RestController
@@ -22,18 +25,18 @@ public class RemoveTokenEndpoint {
 
     private final TokenStore tokenStore;
 
-    @GetMapping("/auth/revoke-token")
-    public String revokeToken(HttpServletRequest request) {
+    @RequestMapping(value = "/auth/removeToken",method = {RequestMethod.GET,RequestMethod.POST})
+    public ResultDto<String> removeToken(HttpServletRequest request) {
         String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (StringUtils.isEmpty(authorization)) {
-            return "无效的access_token";
+            return ResultDto.error(AuthErrorTypeEnum.INVALID_TOKEN);
         }
         String tokenValue = authorization.replace(OAuth2AccessToken.BEARER_TYPE, "").trim();
         OAuth2AccessToken accessToken = tokenStore.readAccessToken(tokenValue);
         if (accessToken != null) {
             tokenStore.removeAccessToken(accessToken);
         }
-        return "退出成功";
+        return ResultDto.ok();
     }
 
 }

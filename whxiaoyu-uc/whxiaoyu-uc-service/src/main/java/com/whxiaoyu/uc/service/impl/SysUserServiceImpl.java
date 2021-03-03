@@ -9,6 +9,7 @@ import com.whxiaoyu.uc.mapper.SysUserMapper;
 import com.whxiaoyu.uc.service.ISysUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,7 +27,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public UserDto getUserDtoByUsername(String username) {
         SysUser sysUser = this.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername,username));
         if (sysUser == null) {
-            throw new CustomizeException(AuthErrorTypeEnum.USERNAME_NOT_FOUND);
+            throw new UsernameNotFoundException("username not found");
         }
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(sysUser,userDto);

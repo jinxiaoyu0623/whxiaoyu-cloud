@@ -16,17 +16,21 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.1.188:8848
+        server-addr: 192.168.10.189:8848
 
 security:
   oauth2:
     client:
-      client-id: client
-      client-secret: secret
+      client-id: xiaoyu
+      client-secret: 1234
       access-token-uri: http://localhost:4001/oauth/token
 
     resource:
       token-info-uri: http://localhost:4001/oauth/check_token
+
+  ignore:
+    urls:
+      - /sysUser/list
 
 mybatis-plus:
   # 逻辑删除

@@ -1,15 +1,16 @@
 package com.whxiaoyu.auth.config;
 
+import com.whxiaoyu.common.security.exception.CustomizeLoginUrlAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
  * @author jinxiaoyu
- * @date 2020/02/05 13:56
  */
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -17,12 +18,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/auth/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/auth/login")
+                .formLogin()
                 .loginProcessingUrl("/auth/form").permitAll()
                 .and()
-                .csrf().disable();
+                .csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(new CustomizeLoginUrlAuthenticationEntryPoint());
     }
 
     @Bean
@@ -35,4 +38,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/css/**");
     }
+
 }

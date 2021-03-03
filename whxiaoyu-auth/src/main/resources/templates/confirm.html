@@ -29,7 +29,7 @@
     <form name='confirmationForm' th:action="@{/oauth/authorize}" method='post'>
         <input name='user_oauth_approval' value='true' type='hidden'/>
         <p>
-            <a href="#" target="_blank">${client}</a> 将获得以下权限：</p>
+            <a href="#" target="_blank">[[${client}]]</a> 将获得以下权限：</p>
         <ul class="list-group">
             <li class="list-group-item">
                 <div th:each="scope:${scopes}">

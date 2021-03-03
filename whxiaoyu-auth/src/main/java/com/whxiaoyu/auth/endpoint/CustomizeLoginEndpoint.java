@@ -6,13 +6,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author jinxiaoyu
- * @date 2020/02/08 23:29
  */
 @RestController
-public class CustomLoginEndpoint {
+public class CustomizeLoginEndpoint {
 
     /**
-     * 认证页面
+     * 登录页面
      */
     @GetMapping("/auth/login")
     public ModelAndView login() {

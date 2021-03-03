@@ -5,6 +5,7 @@ import com.whxiaoyu.common.core.dto.ResultDto;
 import com.whxiaoyu.uc.entity.SysUser;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -21,4 +22,7 @@ public interface RemoteUserService {
      */
     @GetMapping("/sysUser/list")
     ResultDto<List<SysUser>> list();
+
+    @PostMapping("/sysUser/getSysUser")
+    ResultDto<SysUser> getSysUser(String username);
 }

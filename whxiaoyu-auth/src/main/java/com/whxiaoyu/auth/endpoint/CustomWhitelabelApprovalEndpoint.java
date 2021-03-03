@@ -1,6 +1,5 @@
 package com.whxiaoyu.auth.endpoint;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.provider.AuthorizationRequest;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -15,7 +14,6 @@ import java.util.Map;
 /**
  * 自定义授权页面
  * @author jinxiaoyu
- * @date 2020/02/08 23:00
  */
 @RequiredArgsConstructor
 @RestController

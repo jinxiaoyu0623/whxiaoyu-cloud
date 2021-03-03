@@ -22,5 +22,12 @@ feign:
   okhttp:
     enabled: true
 
+security:
+  oauth2:
+    client:
+      client-id: client
+      client-secret: secret
+      access-token-uri: http://localhost:4001/oauth/token
 
-
+    resource:
+      user-info: http://localhost:4002/sysUser/userInfo
