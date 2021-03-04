@@ -21,8 +21,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auth/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginProcessingUrl("/auth/form").permitAll()
+                .formLogin().loginProcessingUrl("/auth/form").permitAll()
+                .failureUrl("/auth/login?error")
+                .and()
+                .logout().logoutUrl("/auth/logout").permitAll().logoutSuccessUrl("/auth/login")
                 .and()
                 .csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(new CustomizeLoginUrlAuthenticationEntryPoint());

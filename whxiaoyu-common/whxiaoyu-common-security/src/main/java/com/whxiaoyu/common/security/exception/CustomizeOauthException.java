@@ -31,9 +31,8 @@ public class CustomizeOauthException extends OAuth2Exception {
         } else if (ex instanceof UnsupportedGrantTypeException) {
             return AuthErrorTypeEnum.UNSUPPORTED_GRANT_TYPE;
         } else if (ex instanceof InsufficientScopeException) {
-            return AuthErrorTypeEnum.INVALID_SCOPE;
-        }
-        else if (ex instanceof InvalidScopeException) {
+            return AuthErrorTypeEnum.INSUFFICIENT_SCOPE;
+        } else if (ex instanceof InvalidScopeException) {
             return AuthErrorTypeEnum.INVALID_SCOPE;
         } else if (ex instanceof InvalidTokenException) {
             return AuthErrorTypeEnum.INVALID_TOKEN;
