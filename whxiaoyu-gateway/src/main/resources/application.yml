@@ -5,29 +5,4 @@ spring:
   application:
     name: whxiaoyu-gateway
 
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 192.168.10.189:8848
 
-# 开启sentinel熔断
-feign:
-  sentinel:
-    enabled: true
-
-  httpclient:
-    enabled: false
-
-  # 启用okhttp连接
-  okhttp:
-    enabled: true
-
-security:
-  oauth2:
-    client:
-      client-id: client
-      client-secret: secret
-      access-token-uri: http://localhost:4001/oauth/token
-
-    resource:
-      user-info: http://localhost:4002/sysUser/userInfo

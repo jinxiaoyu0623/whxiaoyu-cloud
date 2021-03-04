@@ -1,13 +1,13 @@
-package com.whxiaoyu.gateway;
+package com.whxiaoyu.common.orm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WhxiaoyuGatewayApplication {
+public class WhxiaoyuCommonOrmApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WhxiaoyuGatewayApplication.class, args);
+        SpringApplication.run(WhxiaoyuCommonOrmApplication.class, args);
     }
 
 }

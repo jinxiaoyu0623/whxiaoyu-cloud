@@ -36,7 +36,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	private final PermitAllUrlProperties permitAllUrlProperties;
 
-
 	/**
 	 * 默认的配置，对外暴露
 	 */

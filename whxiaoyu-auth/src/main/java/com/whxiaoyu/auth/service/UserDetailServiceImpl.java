@@ -2,6 +2,7 @@ package com.whxiaoyu.auth.service;
 
 import com.whxiaoyu.auth.mapper.UserMapper;
 import com.whxiaoyu.common.core.dto.UserDto;
+import com.whxiaoyu.common.security.CustomizeUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,6 +25,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if (userDto == null) {
             throw new UsernameNotFoundException("username not found");
         }
-        return new CustomUserDetails(userDto);
+        return new CustomizeUserDetails(userDto);
     }
 }

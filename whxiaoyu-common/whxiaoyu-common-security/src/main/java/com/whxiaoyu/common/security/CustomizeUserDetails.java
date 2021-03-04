@@ -1,4 +1,4 @@
-package com.whxiaoyu.auth.service;
+package com.whxiaoyu.common.security;
 
 import com.whxiaoyu.common.core.dto.UserDto;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import java.util.Collections;
  * 自定义用户详情
  * @author jinxiaoyu
  */
-public class CustomUserDetails implements UserDetails {
+public class CustomizeUserDetails implements UserDetails {
 
     private static final long serialVersionUID = -7139137663356485221L;
 
@@ -22,7 +22,7 @@ public class CustomUserDetails implements UserDetails {
     @Setter
     private UserDto userDto;
 
-    public CustomUserDetails(UserDto userDto) {
+    public CustomizeUserDetails(UserDto userDto) {
         this.userDto = userDto;
     }
 

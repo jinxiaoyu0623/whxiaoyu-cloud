@@ -1,13 +1,11 @@
 package com.whxiaoyu.auth.mapper;
 
 import com.whxiaoyu.common.core.dto.UserDto;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 /**
  * @author jinxiaoyu
  */
-@Mapper
 public interface UserMapper {
 
     /**

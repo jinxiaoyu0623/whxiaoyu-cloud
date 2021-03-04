@@ -10,7 +10,9 @@ import lombok.Getter;
 @Getter
 public enum SystemErrorTypeEnum implements ErrorType {
 
-
+    /**
+     * 系统异常
+     */
     SYSTEM_ERROR(10000, "系统异常"),
 
     SYSTEM_BUSY(10001, "系统繁忙,请稍候再试"),

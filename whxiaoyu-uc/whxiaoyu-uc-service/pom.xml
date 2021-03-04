@@ -30,20 +30,15 @@
             <version>2.2.5.RELEASE</version>
         </dependency>
 
-
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <groupId>com.whxiaoyu</groupId>
+            <artifactId>whxiaoyu-uc-api</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.whxiaoyu</groupId>
-            <artifactId>whxiaoyu-uc-api</artifactId>
+            <artifactId>whxiaoyu-common-orm</artifactId>
             <version>${project.version}</version>
         </dependency>
 
