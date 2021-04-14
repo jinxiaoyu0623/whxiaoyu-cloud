@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-08-14
  */
 @RestController
-@RequestMapping("/oauthClientDetails")
+@RequestMapping("/client")
 public class OauthClientDetailsController {
 
 }

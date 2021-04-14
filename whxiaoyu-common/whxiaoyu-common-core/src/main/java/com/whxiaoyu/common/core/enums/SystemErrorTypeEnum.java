@@ -21,11 +21,15 @@ public enum SystemErrorTypeEnum implements ErrorType {
 
     GATEWAY_NOT_FOUND_SERVICE(10404, "服务未找到"),
 
+    METHOD_NOT_ALLOWED(10405, "不支持该方法"),
+
     GATEWAY_ERROR(10500, "网关异常"),
 
     ARGUMENT_NOT_VALID(20000, "请求参数校验不通过"),
 
-    UPLOAD_FILE_SIZE_LIMIT(20001, "上传文件大小超过限制"),
+    JSON_NOT_VALID(20001, "json数据异常"),
+
+    UPLOAD_FILE_SIZE_LIMIT(20002, "上传文件大小超过限制"),
 
     ARGUMENT_MISS(20002, "缺少参数"),
 

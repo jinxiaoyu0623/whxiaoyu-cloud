@@ -5,4 +5,74 @@ spring:
   application:
     name: whxiaoyu-gateway
 
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.3.189:8848
 
+    gateway:
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 5s
+
+      routes:
+        - id: uc_route
+          # 负载均衡
+          uri: lb://whxiaoyu-uc
+          predicates:
+            - Path=/uc/**
+          filters:
+              # 去除第一个路径 /uc/user/info -> lb://whxiaoyu-uc/user/info
+            - StripPrefix=1
+              # 接口限流
+            - name: RequestRateLimiter
+              # redis-rate-limiter.replenishRate：允许用户每秒处理多少个请求
+              # redis-rate-limiter.burstCapacity：令牌桶的容量，允许在一秒钟内完成的最大请求数
+              # key-resolver：key解析器 使用SpEL按名称引用bean
+              # rate-limiter: "#{@myRateLimiter}" 自定义限流算法 默认令牌桶算法
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 2
+                key-resolver: "#{@apiKeyResolver}"
+
+      # 跨域配置
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            # allowCredentials 允许携带认证信息
+            # 允许跨域的源(网站域名/ip)，设置*为全部
+            # 允许跨域请求里的head字段，设置*为全部
+            # 允许跨域的method， 默认为GET和OPTIONS，设置*为全部
+            # max-age 跨域允许的有效期
+            # exposed-headers: 允许response的head信息默认为Cache-Control，Content-Language，Content-Type。。。
+            allowedOrigins: "*"
+            allowed-headers: "*"
+            allowed-methods:
+              - OPTION
+              - POST
+              - GET
+
+    # 统一流量限流
+    sentinel:
+      transport:
+        dashboard: 192.168.3.189:3000
+
+      datasource:
+        ds:
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr}
+            data_id: ${spring.application.name}-flow-rules
+            # 配置表示该数据源中的规则属于哪种类型的规则(flow，degrade，authority，system, param-flow, gw-flow, gw-api-group
+            rule_type: gw-flow
+
+      # 流控异常回调
+      scg:
+        fallback:
+          mode: response
+          redirect: /fallback
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

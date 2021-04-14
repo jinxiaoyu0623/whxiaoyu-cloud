@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.whxiaoyu.common.core.exception.GlobalExceptionHandler
+  com.whxiaoyu.common.core.exception.GlobalExceptionHandler,\
+  com.whxiaoyu.common.core.validator.config.ValidatorConfig

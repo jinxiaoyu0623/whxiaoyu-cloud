@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.List;
  */
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/sysUser")
+@RequestMapping("/user")
 public class SysUserController {
 
     private final ISysUserService sysUserService;
@@ -35,7 +34,7 @@ public class SysUserController {
         return ResultDto.ok(sysUserService.list());
     }
 
-    @GetMapping("/userInfo")
+    @GetMapping("/info")
     public ResultDto<UserDto> userInfo(Authentication authentication) {
         String username = authentication.getName();
         return ResultDto.ok(sysUserService.getUserDtoByUsername(username));
