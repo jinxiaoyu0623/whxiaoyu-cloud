@@ -1,7 +1,7 @@
 package com.whxiaoyu.gateway.controller;
 
 import com.whxiaoyu.common.core.dto.ResultDto;
-import com.whxiaoyu.common.core.enums.SystemErrorTypeEnum;
+import com.whxiaoyu.common.exception.enums.SystemErrorTypeEnum;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;

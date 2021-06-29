@@ -51,4 +51,9 @@ public final class CommonConstants {
 	 */
 	public static final String SUCCESS_MSG = "处理成功";
 
+	/**
+	 * 系统异常
+	 */
+	public static final String FAIL_MSG = "系统异常";
+
 }

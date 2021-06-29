@@ -1,10 +1,8 @@
 package com.whxiaoyu.common.core.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.whxiaoyu.common.core.ErrorType;
 import com.whxiaoyu.common.core.constant.CommonConstants;
-import com.whxiaoyu.common.core.exception.ErrorType;
-import com.whxiaoyu.common.core.enums.SystemErrorTypeEnum;
-import com.whxiaoyu.common.core.exception.CustomizeException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,10 +18,19 @@ public class ResultDto<T> implements Serializable {
 
     private static final long serialVersionUID = -7440048446121729329L;
 
+    /**
+     * 状态码
+     */
     private int code;
 
+    /**
+     * 状态信息
+     */
     private String msg;
 
+    /**
+     * 返回值
+     */
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
@@ -85,23 +92,6 @@ public class ResultDto<T> implements Serializable {
 
 
     /**
-     * 根据自定义异常返回错误信息
-     * @param exception ex
-     * @return result
-     */
-    public static <T> ResultDto<T> error(CustomizeException exception) {
-        return error(exception.getErrorType());
-    }
-
-    /**
-     * 默认系统异常
-     * @return Result
-     */
-    public static <T> ResultDto<T> error() {
-        return error(SystemErrorTypeEnum.SYSTEM_ERROR);
-    }
-
-    /**
      * 自定义返回异常
      * @param code code
      * @param msg 错误消息
@@ -112,5 +102,12 @@ public class ResultDto<T> implements Serializable {
     }
 
 
+    /**
+     * 默认系统异常
+     * @return Result
+     */
+    public static <T> ResultDto<T> error() {
+        return error(500,CommonConstants.FAIL_MSG);
+    }
 
 }

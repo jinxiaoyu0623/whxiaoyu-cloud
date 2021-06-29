@@ -1,6 +1,6 @@
-package com.whxiaoyu.common.core.enums;
+package com.whxiaoyu.common.exception.enums;
 
-import com.whxiaoyu.common.core.exception.ErrorType;
+import com.whxiaoyu.common.core.ErrorType;
 import lombok.Getter;
 
 /**

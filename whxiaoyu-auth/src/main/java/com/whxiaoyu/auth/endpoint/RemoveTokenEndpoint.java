@@ -1,14 +1,12 @@
 package com.whxiaoyu.auth.endpoint;
 
 import com.whxiaoyu.common.core.dto.ResultDto;
-import com.whxiaoyu.common.core.enums.AuthErrorTypeEnum;
-import lombok.AllArgsConstructor;
+import com.whxiaoyu.common.exception.enums.AuthErrorTypeEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

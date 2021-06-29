@@ -17,6 +17,8 @@
         <module>whxiaoyu-common-feign-sentinel</module>
         <module>whxiaoyu-common-security</module>
         <module>whxiaoyu-common-orm</module>
+        <module>whxiaoyu-common-exception</module>
+        <module>whxiaoyu-common-validation</module>
     </modules>
 
 </project>

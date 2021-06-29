@@ -33,7 +33,7 @@
 
         <dependency>
             <groupId>com.whxiaoyu</groupId>
-            <artifactId>whxiaoyu-common-core</artifactId>
+            <artifactId>whxiaoyu-common-exception</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -47,11 +47,11 @@
             <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
         </dependency>
 
+        <!-- 获取配置 -->
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,8 +1,9 @@
-package com.whxiaoyu.common.core.exception;
+package com.whxiaoyu.common.exception.handler;
 
 
 import com.whxiaoyu.common.core.dto.ResultDto;
-import com.whxiaoyu.common.core.enums.SystemErrorTypeEnum;
+import com.whxiaoyu.common.exception.BusinessException;
+import com.whxiaoyu.common.exception.enums.SystemErrorTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.validation.BindException;
@@ -45,8 +46,9 @@ public class GlobalExceptionHandler {
     public ResultDto<String> exceptionHandler(BindException ex) {
         BindingResult bindingResult = ex.getBindingResult();
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-        log.warn("参数绑定异常: {}", fieldErrors.get(0).getDefaultMessage());
-        return ResultDto.error(SystemErrorTypeEnum.ARGUMENT_NOT_VALID.getCode(), fieldErrors.get(0).getDefaultMessage());
+        FieldError fieldError = fieldErrors.get(0);
+        log.warn("参数绑定异常: {}", fieldError.getDefaultMessage());
+        return ResultDto.error(SystemErrorTypeEnum.ARGUMENT_NOT_VALID.getCode(), fieldError.getDefaultMessage());
     }
 
     /**
@@ -109,10 +111,10 @@ public class GlobalExceptionHandler {
     /**
      * 业务异常
      */
-    @ExceptionHandler(CustomizeException.class)
-    public ResultDto<String> exceptionHandler(CustomizeException ex) {
+    @ExceptionHandler(BusinessException.class)
+    public ResultDto<String> exceptionHandler(BusinessException ex) {
         log.error("业务异常: {}",ex.getMessage());
-        return ResultDto.error(ex);
+        return ResultDto.error(ex.getErrorType());
     }
 
     /**

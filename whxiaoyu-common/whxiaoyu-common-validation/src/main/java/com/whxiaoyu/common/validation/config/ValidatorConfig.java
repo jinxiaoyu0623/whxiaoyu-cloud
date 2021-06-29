@@ -1,4 +1,4 @@
-package com.whxiaoyu.common.core.validator.config;
+package com.whxiaoyu.common.validation.config;
 
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;

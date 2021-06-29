@@ -18,7 +18,7 @@
 
         <dependency>
             <groupId>com.whxiaoyu</groupId>
-            <artifactId>whxiaoyu-common-core</artifactId>
+            <artifactId>whxiaoyu-common-exception</artifactId>
             <version>${project.version}</version>
         </dependency>
 

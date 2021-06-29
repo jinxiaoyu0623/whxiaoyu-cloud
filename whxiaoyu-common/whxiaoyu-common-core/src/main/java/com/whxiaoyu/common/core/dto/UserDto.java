@@ -13,6 +13,9 @@ public class UserDto implements Serializable {
 
     private static final long serialVersionUID = 3207159221340062422L;
 
+    /**
+     * 用户名
+     */
     private String username;
 
     @JsonIgnore

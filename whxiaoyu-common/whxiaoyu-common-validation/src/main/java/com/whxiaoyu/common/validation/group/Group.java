@@ -1,4 +1,4 @@
-package com.whxiaoyu.common.core.validator.group;
+package com.whxiaoyu.common.validation.group;
 
 import javax.validation.GroupSequence;
 

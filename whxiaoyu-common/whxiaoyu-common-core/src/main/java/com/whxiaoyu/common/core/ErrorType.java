@@ -1,4 +1,4 @@
-package com.whxiaoyu.common.core.exception;
+package com.whxiaoyu.common.core;
 
 /**
  * 程序错误类型

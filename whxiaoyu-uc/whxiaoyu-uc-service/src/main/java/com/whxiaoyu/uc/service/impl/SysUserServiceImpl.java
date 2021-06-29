@@ -2,8 +2,6 @@ package com.whxiaoyu.uc.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.whxiaoyu.common.core.dto.UserDto;
-import com.whxiaoyu.common.core.enums.AuthErrorTypeEnum;
-import com.whxiaoyu.common.core.exception.CustomizeException;
 import com.whxiaoyu.uc.entity.SysUser;
 import com.whxiaoyu.uc.mapper.SysUserMapper;
 import com.whxiaoyu.uc.service.ISysUserService;

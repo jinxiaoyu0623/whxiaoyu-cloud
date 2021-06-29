@@ -3,7 +3,7 @@ package com.whxiaoyu.gateway.handler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.whxiaoyu.common.core.dto.ResultDto;
-import com.whxiaoyu.common.core.enums.SystemErrorTypeEnum;
+import com.whxiaoyu.common.exception.enums.SystemErrorTypeEnum;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;

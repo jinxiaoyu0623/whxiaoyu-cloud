@@ -2,7 +2,7 @@ package com.whxiaoyu.common.security.exception;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.whxiaoyu.common.core.dto.ResultDto;
-import com.whxiaoyu.common.core.enums.AuthErrorTypeEnum;
+import com.whxiaoyu.common.exception.enums.AuthErrorTypeEnum;
 import lombok.Getter;
 import org.springframework.security.oauth2.common.exceptions.*;
 

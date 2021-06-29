@@ -8,9 +8,15 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.3.189:8848
+        server-addr: 192.168.10.1:8848
 
     gateway:
+      enabled: true
+
+      discovery:
+        locator:
+          lower-case-service-id: true
+
       httpclient:
         connect-timeout: 1000
         response-timeout: 5s
@@ -55,21 +61,21 @@ spring:
     # 统一流量限流
     sentinel:
       transport:
-        dashboard: 192.168.3.189:3000
+        dashboard: 127.0.0.1:3000
+
+      filter:
+        enabled: false
 
       datasource:
         ds:
           nacos:
             server-addr: ${spring.cloud.nacos.discovery.server-addr}
-            data_id: ${spring.application.name}-flow-rules
+            data_id: ${spring.application.name}-gw-flow-rules
+            group_id: SENTINEL_GROUP
+            data-type: json
             # 配置表示该数据源中的规则属于哪种类型的规则(flow，degrade，authority，system, param-flow, gw-flow, gw-api-group
             rule_type: gw-flow
 
-      # 流控异常回调
-      scg:
-        fallback:
-          mode: response
-          redirect: /fallback
 
 management:
   endpoints:
