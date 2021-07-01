@@ -31,7 +31,7 @@ spring:
               # 去除第一个路径 /uc/user/info -> lb://whxiaoyu-uc/user/info
             - StripPrefix=1
               # 接口限流
-            - name: RequestRateLimiter
+            - name: CustomizeRequestRateLimiter
               # redis-rate-limiter.replenishRate：允许用户每秒处理多少个请求
               # redis-rate-limiter.burstCapacity：令牌桶的容量，允许在一秒钟内完成的最大请求数
               # key-resolver：key解析器 使用SpEL按名称引用bean
@@ -40,6 +40,7 @@ spring:
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 2
                 key-resolver: "#{@apiKeyResolver}"
+
 
       # 跨域配置
       globalcors:
@@ -60,25 +61,32 @@ spring:
 
     # 统一流量限流
     sentinel:
+      enabled: true
+
       transport:
         dashboard: 127.0.0.1:3000
 
       filter:
+        # true时在控制台显示url false显示routeId
         enabled: false
 
+      # nacos 网关流控配置数据源 是否加载数据源信息可查看日志 sentinel-record.log.**
       datasource:
         ds:
           nacos:
             server-addr: ${spring.cloud.nacos.discovery.server-addr}
-            data_id: ${spring.application.name}-gw-flow-rules
+            data_id: ${spring.application.name}-gw-flow-rules.json
             group_id: SENTINEL_GROUP
             data-type: json
             # 配置表示该数据源中的规则属于哪种类型的规则(flow，degrade，authority，system, param-flow, gw-flow, gw-api-group
             rule_type: gw-flow
-
 
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+
+logging:
+  level:
+    com.wbxiaoyu.gateway: debug

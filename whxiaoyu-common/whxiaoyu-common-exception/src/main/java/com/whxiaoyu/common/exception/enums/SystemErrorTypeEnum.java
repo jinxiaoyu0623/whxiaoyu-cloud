@@ -25,6 +25,8 @@ public enum SystemErrorTypeEnum implements ErrorType {
 
     GATEWAY_ERROR(10500, "网关异常"),
 
+    SERVICE_CONNECTION_REFUSED(10503, "服务不可用"),
+
     ARGUMENT_NOT_VALID(20000, "请求参数校验不通过"),
 
     JSON_NOT_VALID(20001, "json数据异常"),

@@ -11,6 +11,7 @@ import org.springframework.cloud.gateway.support.NotFoundException;
 import org.springframework.cloud.gateway.support.TimeoutException;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.buffer.DataBufferFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,9 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
 import reactor.core.publisher.Mono;
+
+import java.net.ConnectException;
+
 
 /**
  * 网关异常通用处理器，只作用在webflux 环境下 , 优先级低于 {@link ResponseStatusExceptionHandler} 执行
@@ -40,6 +44,8 @@ public class CustomizeErrorWebExceptionHandler implements ErrorWebExceptionHandl
 
         // header set
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+        response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
+
         if (ex instanceof ResponseStatusException) {
             response.setStatusCode(((ResponseStatusException) ex).getStatus());
         }
@@ -65,6 +71,8 @@ public class CustomizeErrorWebExceptionHandler implements ErrorWebExceptionHandl
                 return ResultDto.error(SystemErrorTypeEnum.GATEWAY_CONNECT_TIME_OUT);
             }
             return ResultDto.error(SystemErrorTypeEnum.GATEWAY_ERROR.getCode(),"网关异常:" + throwable.getMessage());
+        } else if (throwable instanceof ConnectException){
+            return ResultDto.error(SystemErrorTypeEnum.SERVICE_CONNECTION_REFUSED);
         } else {
             return ResultDto.error(SystemErrorTypeEnum.GATEWAY_ERROR);
         }
