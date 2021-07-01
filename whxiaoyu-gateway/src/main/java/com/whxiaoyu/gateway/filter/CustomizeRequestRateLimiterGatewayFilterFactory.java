@@ -1,7 +1,6 @@
 package com.whxiaoyu.gateway.filter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.alibaba.fastjson.JSON;
 import com.whxiaoyu.common.core.dto.ResultDto;
 import com.whxiaoyu.common.exception.enums.SystemErrorTypeEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -31,13 +30,10 @@ public class CustomizeRequestRateLimiterGatewayFilterFactory extends RequestRate
 
     private final KeyResolver defaultKeyResolver;
 
-    private final ObjectMapper objectMapper;
-
-    public CustomizeRequestRateLimiterGatewayFilterFactory(RateLimiter defaultRateLimiter, KeyResolver defaultKeyResolver,ObjectMapper objectMapper) {
+    public CustomizeRequestRateLimiterGatewayFilterFactory(RateLimiter defaultRateLimiter, KeyResolver defaultKeyResolver) {
         super(defaultRateLimiter, defaultKeyResolver);
         this.defaultKeyResolver = defaultKeyResolver;
         this.defaultRateLimiter = defaultRateLimiter;
-        this.objectMapper = objectMapper;
     }
 
     @Override
@@ -68,13 +64,7 @@ public class CustomizeRequestRateLimiterGatewayFilterFactory extends RequestRate
                         ServerHttpResponse httpResponse = exchange.getResponse();
                         httpResponse.setStatusCode(config.getStatusCode());
                         httpResponse.getHeaders().setContentType(MediaType.APPLICATION_JSON);
-                        DataBuffer buffer;
-                        try {
-                            buffer = httpResponse.bufferFactory().wrap(objectMapper.writeValueAsBytes(ResultDto.error(SystemErrorTypeEnum.SYSTEM_BUSY)));
-                        } catch (JsonProcessingException e) {
-                            log.error("object mapper write error : {}",e.getMessage());
-                            buffer = httpResponse.bufferFactory().wrap(new byte[0]);
-                        }
+                        DataBuffer buffer = httpResponse.bufferFactory().wrap(JSON.toJSONBytes(ResultDto.error(SystemErrorTypeEnum.SYSTEM_BUSY)));
                         return httpResponse.writeWith(Mono.just(buffer));
                     });
                 });

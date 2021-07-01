@@ -1,10 +1,8 @@
 package com.whxiaoyu.gateway.handler;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.alibaba.fastjson.JSON;
 import com.whxiaoyu.common.core.dto.ResultDto;
 import com.whxiaoyu.common.exception.enums.SystemErrorTypeEnum;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.cloud.gateway.support.NotFoundException;
@@ -28,12 +26,9 @@ import java.net.ConnectException;
  * @author jinxiaoyu
  */
 @Slf4j
-@RequiredArgsConstructor
 @Order(-1)
 @Component
 public class CustomizeErrorWebExceptionHandler implements ErrorWebExceptionHandler {
-
-    private final ObjectMapper objectMapper;
 
     @Override
     public Mono<Void> handle(ServerWebExchange exchange, Throwable ex) {
@@ -52,12 +47,7 @@ public class CustomizeErrorWebExceptionHandler implements ErrorWebExceptionHandl
 
         return response.writeWith(Mono.fromSupplier(() -> {
             DataBufferFactory bufferFactory = response.bufferFactory();
-            try {
-                return bufferFactory.wrap(objectMapper.writeValueAsBytes(getResultDto(ex)));
-            } catch (JsonProcessingException e) {
-                log.error("object mapper write error : {}",e.getMessage());
-                return bufferFactory.wrap(new byte[0]);
-            }
+            return bufferFactory.wrap(JSON.toJSONBytes(getResultDto(ex)));
         }));
     }
 
