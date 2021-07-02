@@ -2,19 +2,18 @@ package com.whxiaoyu.uc.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import java.time.LocalDateTime;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
 /**
  * <p>
- * 系统角色表
+ * 系统角色
  * </p>
  *
  * @author jinxiaoyu
- * @since 2020-08-14
+ * @since 2021-07-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

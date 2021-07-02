@@ -5,12 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <p>
- *  oauth2客户端前端控制器
- * </p>
+ *  应用客户端控制器
  *
  * @author jinxiaoyu
- * @since 2020-08-14
  */
 @RestController
 @RequestMapping("/client")

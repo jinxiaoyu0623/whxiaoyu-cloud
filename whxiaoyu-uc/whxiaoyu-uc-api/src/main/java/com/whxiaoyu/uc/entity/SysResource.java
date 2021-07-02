@@ -2,19 +2,18 @@ package com.whxiaoyu.uc.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import java.time.LocalDateTime;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
 /**
  * <p>
- * 菜单权限表
+ * 系统资源
  * </p>
  *
  * @author jinxiaoyu
- * @since 2020-08-14
+ * @since 2021-07-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -31,7 +30,7 @@ public class SysResource implements Serializable {
     /**
      * 资源名称
      */
-    private String name;
+    private String resourceName;
 
     /**
      * 权限标识
@@ -66,7 +65,7 @@ public class SysResource implements Serializable {
     /**
      * 资源类型 （0菜单 1按钮）
      */
-    private String type;
+    private String resourceType;
 
     /**
      * 创建时间
@@ -82,6 +81,11 @@ public class SysResource implements Serializable {
      * 逻辑删除标记(0--正常 1--删除)
      */
     private String delFlag;
+
+    /**
+     * 数据权限 read,private,public
+     */
+    private String scope;
 
 
 }

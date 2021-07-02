@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- * 角色菜单表 Mapper 接口
+ * 角色关联菜单 Mapper 接口
  * </p>
  *
  * @author jinxiaoyu
- * @since 2020-08-14
+ * @since 2021-07-01
  */
 public interface SysRoleResourceMapper extends BaseMapper<SysRoleResource> {
 

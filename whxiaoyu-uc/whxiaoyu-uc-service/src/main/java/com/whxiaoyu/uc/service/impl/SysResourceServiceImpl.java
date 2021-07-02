@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 菜单权限表 服务实现类
+ * 系统资源 服务实现类
  * </p>
  *
  * @author jinxiaoyu
- * @since 2020-08-14
+ * @since 2021-07-01
  */
 @Service
 public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysResource> implements ISysResourceService {

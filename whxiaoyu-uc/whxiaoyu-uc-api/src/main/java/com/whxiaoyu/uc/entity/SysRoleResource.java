@@ -1,17 +1,16 @@
 package com.whxiaoyu.uc.entity;
 
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
-
 /**
  * <p>
- * 角色菜单表
+ * 角色关联菜单
  * </p>
  *
  * @author jinxiaoyu
- * @since 2020-08-14
+ * @since 2021-07-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

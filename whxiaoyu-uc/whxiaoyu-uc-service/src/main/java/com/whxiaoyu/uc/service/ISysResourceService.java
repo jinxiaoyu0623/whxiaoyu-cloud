@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 菜单权限表 服务类
+ * 系统资源 服务类
  * </p>
  *
  * @author jinxiaoyu
- * @since 2020-08-14
+ * @since 2021-07-01
  */
 public interface ISysResourceService extends IService<SysResource> {
 

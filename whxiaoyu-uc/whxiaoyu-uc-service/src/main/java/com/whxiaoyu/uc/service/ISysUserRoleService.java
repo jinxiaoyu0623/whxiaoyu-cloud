@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 用户角色表 服务类
+ * 用户关联角色 服务类
  * </p>
  *
  * @author jinxiaoyu
- * @since 2020-08-14
+ * @since 2021-07-01
  */
 public interface ISysUserRoleService extends IService<SysUserRole> {
 

@@ -2,14 +2,13 @@ package com.whxiaoyu.uc.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 机构单位
+ * 数据主字典
  * </p>
  *
  * @author jinxiaoyu
@@ -17,37 +16,36 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class SysOrg implements Serializable {
+public class SysDict implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "org_id", type = IdType.AUTO)
-    private Integer orgId;
+    @TableId(value = "dict_id", type = IdType.AUTO)
+    private Integer dictId;
 
     /**
-     * 机构名称
+     * 字典名称
      */
-    private String orgName;
+    private String dictName;
 
     /**
-     * 父节点
+     * 字典码
      */
-    private Integer parentId;
+    private String dictCode;
 
     /**
-     * 负责人
+     * 字典类型
      */
-    private String person;
+    private String dictType;
 
     /**
-     * 联系电话
+     * 排序号
      */
-    private String phome;
+    private Integer sort;
 
-    private LocalDateTime createTime;
-
-    private LocalDateTime updateTime;
-
+    /**
+     * 逻辑删除
+     */
     private String delFlag;
 
 
