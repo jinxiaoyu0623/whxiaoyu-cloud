@@ -16,6 +16,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
+import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
@@ -36,7 +38,6 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final RedisConnectionFactory redisConnectionFactory;
 
-
     /**
      * 授权服务器安全配置
      * # allowFormAuthenticationForClients 是否允许表单方式登录
@@ -46,7 +47,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
      */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.checkTokenAccess("permitAll()");
+        security.checkTokenAccess("isAuthenticated()")
+                .allowFormAuthenticationForClients();
     }
 
     /**
@@ -66,6 +68,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)
+                .authorizationCodeServices(jdbcAuthorizationCodeServices())
                 .userDetailsService(userDetailsService)
                 .approvalStore(approvalStore())
                 .tokenStore(tokenStore())
@@ -89,11 +92,19 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     }
 
     /**
-     * 授权持久化
+     * 授权状态持久化
      */
     @Bean
     public ApprovalStore approvalStore() {
         return new JdbcApprovalStore(dataSource);
+    }
+
+    /**
+     * 授权码持久化
+     */
+    @Bean
+    public AuthorizationCodeServices jdbcAuthorizationCodeServices() {
+        return new JdbcAuthorizationCodeServices(dataSource);
     }
 
 }

@@ -19,12 +19,15 @@ package com.whxiaoyu.common.security.component;
 import com.whxiaoyu.common.security.exception.CustomizeWebResponseExceptionTranslator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 import org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint;
+
+import java.util.Set;
 
 /**
  * 资源服务器配置
@@ -45,8 +48,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		httpSecurity.headers().frameOptions().disable();
 		ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = httpSecurity
 				.authorizeRequests();
-		permitAllUrlProperties.getUrls().forEach(url -> registry.antMatchers(url).permitAll());
-		registry.antMatchers("/sysUser/userInfo").access("#oauth2.hasScope('user')");
+		Set<String> urls = permitAllUrlProperties.getUrls();
+		if (urls != null && urls.size() > 0) {
+			urls.forEach(url -> registry.antMatchers(url).permitAll());
+		}
+		registry.antMatchers("/user/info").access("#oauth2.hasScope('user:read')");
 		registry.anyRequest().authenticated().and().csrf().disable();
 	}
 
@@ -59,7 +65,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	/**
 	 * oauth2登录异常处理
 	 */
-	private OAuth2AuthenticationEntryPoint oAuth2AuthenticationEntryPoint() {
+	@Bean
+	public OAuth2AuthenticationEntryPoint oAuth2AuthenticationEntryPoint() {
 		OAuth2AuthenticationEntryPoint authenticationEntryPoint = new OAuth2AuthenticationEntryPoint();
 		authenticationEntryPoint.setExceptionTranslator(new CustomizeWebResponseExceptionTranslator());
 		return authenticationEntryPoint;
@@ -68,7 +75,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	/**
 	 * oauth2鉴权异常处理
 	 */
-	private OAuth2AccessDeniedHandler oAuth2AccessDeniedHandler() {
+	@Bean
+	public OAuth2AccessDeniedHandler oAuth2AccessDeniedHandler() {
 		OAuth2AccessDeniedHandler accessDeniedHandler = new OAuth2AccessDeniedHandler();
 		accessDeniedHandler.setExceptionTranslator(new CustomizeWebResponseExceptionTranslator());
 		return accessDeniedHandler;

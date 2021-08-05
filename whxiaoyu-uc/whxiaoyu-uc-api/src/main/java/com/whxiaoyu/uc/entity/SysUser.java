@@ -2,6 +2,8 @@ package com.whxiaoyu.uc.entity;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -29,6 +31,8 @@ public class SysUser implements Serializable {
      */
     private String username;
 
+
+    @JsonIgnore
     private String password;
 
     /**
@@ -64,6 +68,7 @@ public class SysUser implements Serializable {
     /**
      * 0-正常，1-删除
      */
+    @JsonIgnore
     private String delFlag;
 
     /**

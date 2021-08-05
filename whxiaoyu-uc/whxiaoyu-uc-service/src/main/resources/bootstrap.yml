@@ -1,0 +1,35 @@
+server:
+  port: 4002
+
+spring:
+  application:
+    name: whxiaoyu-uc
+
+
+  cloud:
+    nacos:
+
+      discovery:
+        server-addr: 192.168.10.1:8848
+
+      config:
+        server-addr: 192.168.10.1:8848
+        # 共享配置 每个子模块中，spring有许多相同配置项，比如Redis,Mysql
+        # shared-configs:
+        #  - data-id: ${spring.application.name}.yaml
+        #    refresh: true
+
+        # 集成spring-cloud-config
+        extension-configs:
+          - data-id: ${spring.application.name}.yaml
+            refresh: true
+
+logging:
+  level:
+    com.whxiaoyu.uc: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

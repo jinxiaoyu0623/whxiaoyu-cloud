@@ -8,6 +8,7 @@ import com.whxiaoyu.common.security.CustomizeUserDetails;
 import com.whxiaoyu.uc.entity.SysUser;
 import com.whxiaoyu.uc.service.ISysUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,6 +44,7 @@ public class SysUserController {
     /**
      * 获取当前用户信息
      */
+    @PreAuthorize("hasAuthority('#oauth2')")
     @GetMapping("/info")
     public ResultDto<UserDto> info(Authentication authentication) {
         CustomizeUserDetails userDetails = (CustomizeUserDetails) authentication.getPrincipal();

@@ -1,0 +1,26 @@
+server:
+  port: 4001
+
+spring:
+  application:
+    name: whxiaoyu-auth
+
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.10.1:8848
+        # 公共配置 application.yaml
+        shared-configs:
+          - data-id: ${spring.application.name}.yaml
+            refresh: true
+
+logging:
+  level:
+    com.whxiaoyu.auth: debug
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "info,health,nacosconfig"
