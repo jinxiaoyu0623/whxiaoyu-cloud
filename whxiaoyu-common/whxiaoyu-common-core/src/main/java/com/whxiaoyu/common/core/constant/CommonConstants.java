@@ -49,7 +49,7 @@ public final class CommonConstants {
 	/**
 	 * 处理成功消息
 	 */
-	public static final String SUCCESS_MSG = "处理成功";
+	public static final String SUCCESS_MSG = "success";
 
 	/**
 	 * 系统异常

@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 import java.util.Map;
 
 /**
- * 自定义限流网关过滤
+ * 自定义限流网关过滤并设置异常返回
  * @author jinxiaoyu
  */
 @Slf4j
@@ -36,6 +36,7 @@ public class CustomizeRequestRateLimiterGatewayFilterFactory extends RequestRate
         this.defaultRateLimiter = defaultRateLimiter;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public GatewayFilter apply(Config config) {
         KeyResolver resolver = getOrDefault(config.getKeyResolver(), defaultKeyResolver);

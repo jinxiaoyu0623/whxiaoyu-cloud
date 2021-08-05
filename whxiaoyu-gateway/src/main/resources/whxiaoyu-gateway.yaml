@@ -1,17 +1,5 @@
-server:
-  port: 4010
-
 spring:
-  application:
-    name: whxiaoyu-gateway
-
   cloud:
-    nacos:
-      discovery:
-        server-addr: 192.168.10.1:8848
-
-
-
     gateway:
       enabled: true
 
@@ -69,7 +57,7 @@ spring:
         dashboard: 127.0.0.1:3000
 
       filter:
-        # true时在控制台显示url false显示routeId
+        # true时在sentinel控制台显示url,false显示routeId
         enabled: false
 
       # nacos 网关流控配置数据源 是否加载数据源信息可查看日志 sentinel-record.log.**
@@ -82,13 +70,3 @@ spring:
             data-type: json
             # 配置表示该数据源中的规则属于哪种类型的规则(flow，degrade，authority，system, param-flow, gw-flow, gw-api-group
             rule_type: gw-flow
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-
-logging:
-  level:
-    com.wbxiaoyu.gateway: debug
