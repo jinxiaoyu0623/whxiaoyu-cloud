@@ -27,7 +27,6 @@ import java.util.Map;
 public class CustomizeRequestRateLimiterGatewayFilterFactory extends RequestRateLimiterGatewayFilterFactory {
 
     private final RateLimiter defaultRateLimiter;
-
     private final KeyResolver defaultKeyResolver;
 
     public CustomizeRequestRateLimiterGatewayFilterFactory(RateLimiter defaultRateLimiter, KeyResolver defaultKeyResolver) {

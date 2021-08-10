@@ -35,7 +35,9 @@ public enum SystemErrorTypeEnum implements ErrorType {
 
     ARGUMENT_MISS(20002, "缺少参数"),
 
-    DUPLICATE_PRIMARY_KEY(30000,"唯一键冲突");
+    DUPLICATE_PRIMARY_KEY(30000,"唯一键冲突"),
+
+    DATA_NOT_FOUND(40404,"数据不存在");
 
     /**
      * 错误类型码

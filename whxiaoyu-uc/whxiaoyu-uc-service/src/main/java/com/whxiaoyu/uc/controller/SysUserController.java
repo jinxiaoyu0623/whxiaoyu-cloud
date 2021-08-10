@@ -1,15 +1,20 @@
 package com.whxiaoyu.uc.controller;
 
+import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.whxiaoyu.common.core.dto.ResultDto;
 import com.whxiaoyu.common.core.dto.UserDto;
+import com.whxiaoyu.common.exception.enums.AuthErrorTypeEnum;
+import com.whxiaoyu.common.exception.enums.SystemErrorTypeEnum;
 import com.whxiaoyu.common.security.CustomizeUserDetails;
 import com.whxiaoyu.uc.entity.SysUser;
 import com.whxiaoyu.uc.service.ISysUserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,11 +49,16 @@ public class SysUserController {
     /**
      * 获取当前用户信息
      */
-    @PreAuthorize("hasAuthority('#oauth2')")
     @GetMapping("/info")
     public ResultDto<UserDto> info(Authentication authentication) {
-        CustomizeUserDetails userDetails = (CustomizeUserDetails) authentication.getPrincipal();
-        return ResultDto.ok(userDetails.getUserDto());
+        String username = authentication.getName();
+        SysUser sysUser = sysUserService.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername,username));
+        if (sysUser == null) {
+            return ResultDto.error(SystemErrorTypeEnum.DATA_NOT_FOUND);
+        }
+        UserDto userDto = new UserDto();
+        BeanUtil.copyProperties(sysUser,userDto);
+        return ResultDto.ok(userDto);
     }
 
     /**

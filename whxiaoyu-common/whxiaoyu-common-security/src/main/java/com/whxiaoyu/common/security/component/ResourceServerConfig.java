@@ -19,15 +19,15 @@ package com.whxiaoyu.common.security.component;
 import com.whxiaoyu.common.security.exception.CustomizeWebResponseExceptionTranslator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 import org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint;
-
-import java.util.Set;
+import org.springframework.security.oauth2.provider.expression.OAuth2WebSecurityExpressionHandler;
 
 /**
  * 资源服务器配置
@@ -37,8 +37,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-	private final PermitAllUrlProperties permitAllUrlProperties;
-
+	private final OAuth2WebSecurityExpressionHandler oAuth2WebSecurityExpressionHandler;
 	/**
 	 * 默认的配置，对外暴露
 	 */
@@ -46,20 +45,18 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public void configure(HttpSecurity httpSecurity) throws Exception{
 		//允许使用iframe 嵌套
 		httpSecurity.headers().frameOptions().disable();
-		ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = httpSecurity
-				.authorizeRequests();
-		Set<String> urls = permitAllUrlProperties.getUrls();
-		if (urls != null && urls.size() > 0) {
-			urls.forEach(url -> registry.antMatchers(url).permitAll());
-		}
-		registry.antMatchers("/user/info").access("#oauth2.hasScope('user:read')");
-		registry.anyRequest().authenticated().and().csrf().disable();
+		httpSecurity.authorizeRequests()
+				.antMatchers("/user/info").access("#oauth2.hasScope('user:read')")
+				.anyRequest().access("@webSecurityExpressions.check(authentication,request)")
+				.and()
+				.csrf().disable();
 	}
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) {
 		resources.authenticationEntryPoint(oAuth2AuthenticationEntryPoint())
-				.accessDeniedHandler(oAuth2AccessDeniedHandler());
+				.accessDeniedHandler(oAuth2AccessDeniedHandler())
+				.expressionHandler(oAuth2WebSecurityExpressionHandler);
 	}
 
 	/**

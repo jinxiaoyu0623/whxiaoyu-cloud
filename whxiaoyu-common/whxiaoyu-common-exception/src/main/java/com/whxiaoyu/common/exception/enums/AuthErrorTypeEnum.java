@@ -19,13 +19,13 @@ public enum AuthErrorTypeEnum implements ErrorType {
 
     INVALID_GRANT(40003, "无效的授权"),
 
-    INVALID_SCOPE(40004, "无效的scope"),
+    INVALID_SCOPE(40004, "无效的授权范围"),
 
     INVALID_TOKEN(40005, "无效的token"),
 
-    INSUFFICIENT_SCOPE(40010, "授权不足"),
+    INSUFFICIENT_SCOPE(40010, "授权范围不足"),
 
-    REDIRECT_URI_MISMATCH(40020, "redirect url不匹配"),
+    REDIRECT_URI_MISMATCH(40020, "回调地址不匹配"),
 
     ACCESS_DENIED(40030, "拒绝访问"),
 
