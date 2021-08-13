@@ -26,11 +26,14 @@ public class WebSecurityExpressions {
         String requestUri = request.getRequestURI().substring(request.getContextPath().length()).replaceAll("[/]+$", "");
 
         //放行规则
-        for (String ignoreUrl : permitAllUrlProperties.getUrls()) {
-            if (antPathMatcher.match(ignoreUrl,requestUri)) {
-                return true;
+        if (permitAllUrlProperties.getUrls() != null) {
+            for (String ignoreUrl : permitAllUrlProperties.getUrls()) {
+                if (antPathMatcher.match(ignoreUrl,requestUri)) {
+                    return true;
+                }
             }
         }
+
         // 当前角色资源url验证
         return authentication instanceof OAuth2Authentication;
 

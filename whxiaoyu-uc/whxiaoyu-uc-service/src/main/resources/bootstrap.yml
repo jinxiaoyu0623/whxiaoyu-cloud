@@ -5,14 +5,15 @@ spring:
   application:
     name: whxiaoyu-uc
 
+
   cloud:
     nacos:
 
       discovery:
-        server-addr: 192.168.10.1:8848
+        server-addr: 192.168.10.189:8848
 
       config:
-        server-addr: 192.168.10.1:8848
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
         # 共享配置 每个子模块中，spring有许多相同配置项，比如Redis,Mysql
         # shared-configs:
         #  - data-id: ${spring.application.name}.yaml

@@ -28,6 +28,7 @@
         <hutool.version>5.5.7</hutool.version>
         <feign-okhttp.version>10.10.1</feign-okhttp.version>
         <rocketmq-spring.version>2.2.0</rocketmq-spring.version>
+        <spring-boot-admin.version>2.3.1</spring-boot-admin.version>
     </properties>
 
     <dependencies>
@@ -102,6 +103,14 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-dependencies</artifactId>
+                <version>${spring-boot-admin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
         </dependencies>

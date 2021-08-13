@@ -8,10 +8,10 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.10.1:8848
+        server-addr: 192.168.10.189:8848
 
       config:
-        server-addr: 192.168.10.1:8848
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
         # 扩展配置 application.yaml
         extension-configs:
           - data-id: ${spring.application.name}.yaml
