@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -36,6 +35,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private final RedisConnectionFactory redisConnectionFactory;
+    private final PasswordEncoder passwordEncoder;
 
     /**
      * 授权服务器安全配置
@@ -46,7 +46,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
      */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.checkTokenAccess("isAuthenticated()")
+        security.checkTokenAccess("permitAll()")
                 .allowFormAuthenticationForClients();
     }
 
@@ -57,7 +57,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.jdbc(dataSource).passwordEncoder(passwordEncoder());
+        clients.jdbc(dataSource).passwordEncoder(passwordEncoder);
     }
 
     /**
@@ -80,14 +80,6 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Bean
     public TokenStore tokenStore() {
         return new RedisTokenStore(redisConnectionFactory);
-    }
-
-    /**
-     * 密码加密方式
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     /**

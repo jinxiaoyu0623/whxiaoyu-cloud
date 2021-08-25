@@ -51,7 +51,7 @@ public class SecuritySecureConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("xiaoyu").password("{noop}1234").roles("USER");
+        auth.inMemoryAuthentication().withUser("xiaoyu").password("{noop}1234").roles("BOOT-ADMIN");
     }
 
 }

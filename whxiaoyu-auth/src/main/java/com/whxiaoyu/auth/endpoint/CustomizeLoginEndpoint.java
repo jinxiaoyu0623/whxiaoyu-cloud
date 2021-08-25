@@ -24,7 +24,6 @@ public class CustomizeLoginEndpoint {
 
     @GetMapping("/")
     public ResultDto<String> index(Authentication authentication) {
-        CustomizeUserDetails details = (CustomizeUserDetails) authentication.getPrincipal();
-        return ResultDto.ok("welcome for you : " + details.getUserDto().getNickName());
+        return ResultDto.ok("welcome for you : " + authentication.getName());
     }
 }

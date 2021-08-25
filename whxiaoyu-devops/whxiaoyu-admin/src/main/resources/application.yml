@@ -5,15 +5,6 @@ spring:
   application:
     name: whxiaoyu-admin
 
-  boot:
-    admin:
-      instance-auth:
-        enabled: true
-        service-map:
-          whxiaoyu-uc:
-            user-name: whxiaoyu-uc-client
-            user-password: whxiaoyu-uc-secret
-
 logging:
   file:
     name: ${user.dir}/infos/${spring.application.name}.log

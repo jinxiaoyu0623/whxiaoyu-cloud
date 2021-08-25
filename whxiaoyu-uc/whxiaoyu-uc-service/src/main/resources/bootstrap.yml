@@ -5,10 +5,8 @@ spring:
   application:
     name: whxiaoyu-uc
 
-
   cloud:
     nacos:
-
       discovery:
         server-addr: 192.168.10.189:8848
 
@@ -26,6 +24,23 @@ spring:
 
   main:
     allow-bean-definition-overriding: true
+
+  security:
+    user:
+      name: ucActor
+      password: 1234
+
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:4008
+        username: xiaoyu
+        password: 1234
+        instance:
+          metadata:
+            user.name: ${spring.security.user.name}
+            user.password: ${spring.security.user.password}
 
 logging:
   file:

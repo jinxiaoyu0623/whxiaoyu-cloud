@@ -6,16 +6,16 @@ spring:
     username: root
     password:
 
-security:
-  ignore:
-    urls:
-      - /actuator/**
 
   oauth2:
     client:
       client-id: xiaoyu
       client-secret: 1234
       access-token-uri: http://localhost:4001/oauth/token
+
+
+
+
 
     resource:
       token-info-uri: http://localhost:4001/oauth/check_token

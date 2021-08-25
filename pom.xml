@@ -17,6 +17,7 @@
         <module>whxiaoyu-message</module>
         <module>whxiaoyu-gateway</module>
         <module>whxiaoyu-devops</module>
+        <module>whxiaoyu-sso-client</module>
     </modules>
 
     <properties>

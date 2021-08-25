@@ -14,6 +14,17 @@ spring:
           - data-id: ${spring.application.name}.yaml
             refresh: true
 
+  boot:
+    admin:
+      client:
+        url: http://localhost:4008
+        username: xiaoyu
+        password: 1234
+        instance:
+          metadata:
+            user.name: auth
+            user.password: 1234
+
 logging:
   file:
     name: ${user.dir}/infos/${spring.application.name}.log
@@ -25,4 +36,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: "info,health,nacosconfig"
+        include: "*"
