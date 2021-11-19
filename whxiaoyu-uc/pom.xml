@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.whxiaoyu</groupId>
         <artifactId>whxiaoyu-cloud</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>whxiaoyu-uc</artifactId>

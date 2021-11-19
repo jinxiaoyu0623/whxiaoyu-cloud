@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.whxiaoyu</groupId>
         <artifactId>whxiaoyu-components</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>whxiaoyu-component-validation-starter</artifactId>
