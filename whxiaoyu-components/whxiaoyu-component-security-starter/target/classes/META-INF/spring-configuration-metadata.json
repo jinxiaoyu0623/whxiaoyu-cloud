@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "security.ignore",
+      "type": "com.whxiaoyu.component.security.PermitAllUrlProperties",
+      "sourceType": "com.whxiaoyu.component.security.PermitAllUrlProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "security.ignore.urls",
+      "type": "java.util.Set<java.lang.String>",
+      "sourceType": "com.whxiaoyu.component.security.PermitAllUrlProperties"
+    }
+  ],
+  "hints": []
+}
