@@ -1,8 +1,8 @@
 package com.whxiaoyu.gateway.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.whxiaoyu.common.core.dto.ResultDto;
-import com.whxiaoyu.common.exception.enums.SystemErrorTypeEnum;
+import com.whxiaoyu.component.dto.ResponseResult;
+import com.whxiaoyu.component.exception.enums.SystemErrorTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.cloud.gateway.support.NotFoundException;
@@ -51,20 +51,20 @@ public class CustomizeErrorWebExceptionHandler implements ErrorWebExceptionHandl
         }));
     }
 
-    private ResultDto<String> getResultDto(Throwable throwable) {
+    private ResponseResult<String> getResultDto(Throwable throwable) {
         log.error("网关异常: {}",throwable.getMessage());
         if (throwable instanceof NotFoundException) {
-            return ResultDto.error(SystemErrorTypeEnum.GATEWAY_NOT_FOUND_SERVICE);
+            return ResponseResult.error(SystemErrorTypeEnum.GATEWAY_NOT_FOUND_SERVICE);
         } else if (throwable instanceof ResponseStatusException) {
             Throwable ex = throwable.getCause();
             if (ex instanceof TimeoutException) {
-                return ResultDto.error(SystemErrorTypeEnum.GATEWAY_CONNECT_TIME_OUT);
+                return ResponseResult.error(SystemErrorTypeEnum.GATEWAY_CONNECT_TIME_OUT);
             }
-            return ResultDto.error(SystemErrorTypeEnum.GATEWAY_ERROR.getCode(),"网关异常:" + throwable.getMessage());
+            return ResponseResult.error(SystemErrorTypeEnum.GATEWAY_ERROR.getCode(),"网关异常:" + throwable.getMessage());
         } else if (throwable instanceof ConnectException){
-            return ResultDto.error(SystemErrorTypeEnum.SERVICE_CONNECTION_REFUSED);
+            return ResponseResult.error(SystemErrorTypeEnum.SERVICE_CONNECTION_REFUSED);
         } else {
-            return ResultDto.error(SystemErrorTypeEnum.GATEWAY_ERROR);
+            return ResponseResult.error(SystemErrorTypeEnum.GATEWAY_ERROR);
         }
     }
 

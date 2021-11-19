@@ -2,7 +2,6 @@ package com.whxiaoyu.gateway.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.whxiaoyu.common.core.constant.CacheConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.route.RouteDefinition;
@@ -27,13 +26,15 @@ import java.util.Set;
 @Component
 public class RedisRouteDefinitionRepository implements RouteDefinitionRepository {
 
+    private final static String GATEWAY_ROUTES = "routes:";
+
     private final StringRedisTemplate redisTemplate;
     private final ObjectMapper objectMapper;
 
     @Override
     public Flux<RouteDefinition> getRouteDefinitions() {
         List<RouteDefinition> routeDefinitions = new ArrayList<>();
-        Set<String> keys = redisTemplate.keys(CacheConstants.GATEWAY_ROUTES + "*");
+        Set<String> keys = redisTemplate.keys(GATEWAY_ROUTES + "*");
 
         if (keys != null) {
             List<String> list = redisTemplate.opsForValue().multiGet(keys);
@@ -57,7 +58,7 @@ public class RedisRouteDefinitionRepository implements RouteDefinitionRepository
                 return Mono.error(new IllegalArgumentException("id may not be empty"));
             }
             try {
-                redisTemplate.opsForValue().set(CacheConstants.GATEWAY_ROUTES + r.getId(),objectMapper.writeValueAsString(r));
+                redisTemplate.opsForValue().set(GATEWAY_ROUTES + r.getId(),objectMapper.writeValueAsString(r));
             } catch (JsonProcessingException e) {
                 log.error("object mapper write error : {}",e.getMessage());
             }
@@ -68,9 +69,9 @@ public class RedisRouteDefinitionRepository implements RouteDefinitionRepository
     @Override
     public Mono<Void> delete(Mono<String> routeId) {
         return routeId.flatMap(id -> {
-            Boolean flag = redisTemplate.hasKey(CacheConstants.GATEWAY_ROUTES + id);
+            Boolean flag = redisTemplate.hasKey(GATEWAY_ROUTES + id);
             if (Boolean.valueOf(true).equals(flag)) {
-                redisTemplate.delete(CacheConstants.GATEWAY_ROUTES + id);
+                redisTemplate.delete(GATEWAY_ROUTES + id);
                 return Mono.empty();
             }
             return Mono.defer(() -> Mono.error(

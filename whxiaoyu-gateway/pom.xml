@@ -33,7 +33,7 @@
 
         <dependency>
             <groupId>com.whxiaoyu</groupId>
-            <artifactId>whxiaoyu-common-exception</artifactId>
+            <artifactId>whxiaoyu-component-exception-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
 

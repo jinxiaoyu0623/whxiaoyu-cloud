@@ -1,8 +1,8 @@
 package com.whxiaoyu.gateway.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.whxiaoyu.common.core.dto.ResultDto;
-import com.whxiaoyu.common.exception.enums.SystemErrorTypeEnum;
+import com.whxiaoyu.component.dto.ResponseResult;
+import com.whxiaoyu.component.exception.enums.SystemErrorTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.RequestRateLimiterGatewayFilterFactory;
@@ -64,7 +64,7 @@ public class CustomizeRequestRateLimiterGatewayFilterFactory extends RequestRate
                         ServerHttpResponse httpResponse = exchange.getResponse();
                         httpResponse.setStatusCode(config.getStatusCode());
                         httpResponse.getHeaders().setContentType(MediaType.APPLICATION_JSON);
-                        DataBuffer buffer = httpResponse.bufferFactory().wrap(JSON.toJSONBytes(ResultDto.error(SystemErrorTypeEnum.SYSTEM_BUSY)));
+                        DataBuffer buffer = httpResponse.bufferFactory().wrap(JSON.toJSONBytes(ResponseResult.error(SystemErrorTypeEnum.SYSTEM_BUSY)));
                         return httpResponse.writeWith(Mono.just(buffer));
                     });
                 });
