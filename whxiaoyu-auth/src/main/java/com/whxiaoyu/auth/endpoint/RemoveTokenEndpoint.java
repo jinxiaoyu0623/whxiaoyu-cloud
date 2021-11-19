@@ -1,7 +1,7 @@
 package com.whxiaoyu.auth.endpoint;
 
-import com.whxiaoyu.common.core.dto.ResultDto;
-import com.whxiaoyu.common.exception.enums.AuthErrorTypeEnum;
+import com.whxiaoyu.component.dto.ResponseResult;
+import com.whxiaoyu.component.exception.enums.AuthErrorTypeEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -24,17 +24,17 @@ public class RemoveTokenEndpoint {
     private final TokenStore tokenStore;
 
     @RequestMapping(value = "/auth/removeToken",method = {RequestMethod.GET,RequestMethod.POST})
-    public ResultDto<String> removeToken(HttpServletRequest request) {
+    public ResponseResult<String> removeToken(HttpServletRequest request) {
         String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (StringUtils.isEmpty(authorization)) {
-            return ResultDto.error(AuthErrorTypeEnum.INVALID_TOKEN);
+            return ResponseResult.error(AuthErrorTypeEnum.INVALID_TOKEN);
         }
         String tokenValue = authorization.replace(OAuth2AccessToken.BEARER_TYPE, "").trim();
         OAuth2AccessToken accessToken = tokenStore.readAccessToken(tokenValue);
         if (accessToken != null) {
             tokenStore.removeAccessToken(accessToken);
         }
-        return ResultDto.ok();
+        return ResponseResult.ok();
     }
 
 }

@@ -1,6 +1,6 @@
 package com.whxiaoyu.uc;
 
-import com.whxiaoyu.common.security.annotation.EnableWhxiaoyuResourceServer;
+import com.whxiaoyu.component.security.annotation.EnableWhxiaoyuResourceServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;

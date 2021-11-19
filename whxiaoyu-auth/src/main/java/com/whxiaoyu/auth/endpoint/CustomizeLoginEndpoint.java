@@ -1,7 +1,6 @@
 package com.whxiaoyu.auth.endpoint;
 
-import com.whxiaoyu.common.core.dto.ResultDto;
-import com.whxiaoyu.common.security.CustomizeUserDetails;
+import com.whxiaoyu.component.dto.ResponseResult;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +22,7 @@ public class CustomizeLoginEndpoint {
 
 
     @GetMapping("/")
-    public ResultDto<String> index(Authentication authentication) {
-        return ResultDto.ok("welcome for you : " + authentication.getName());
+    public ResponseResult<String> index(Authentication authentication) {
+        return ResponseResult.ok("welcome for you : " + authentication.getName());
     }
 }

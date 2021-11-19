@@ -1,6 +1,6 @@
 package com.whxiaoyu.auth.config;
 
-import com.whxiaoyu.common.security.exception.CustomizeWebResponseExceptionTranslator;
+import com.whxiaoyu.component.security.exception.CustomizeWebResponseExceptionTranslator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

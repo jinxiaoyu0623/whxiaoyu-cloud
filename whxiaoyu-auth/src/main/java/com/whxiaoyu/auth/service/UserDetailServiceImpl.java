@@ -1,8 +1,8 @@
 package com.whxiaoyu.auth.service;
 
 import com.whxiaoyu.auth.mapper.UserMapper;
-import com.whxiaoyu.common.core.dto.UserDto;
-import com.whxiaoyu.common.security.CustomizeUserDetails;
+import com.whxiaoyu.component.dto.User;
+import com.whxiaoyu.component.security.CustomizeUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,10 +21,10 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDto userDto = userMapper.getUserDto(username);
-        if (userDto == null) {
+        User user = userMapper.getUserDto(username);
+        if (user == null) {
             throw new UsernameNotFoundException("username not found");
         }
-        return new CustomizeUserDetails(userDto);
+        return new CustomizeUserDetails(user);
     }
 }

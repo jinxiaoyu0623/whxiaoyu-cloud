@@ -38,13 +38,13 @@
 
         <dependency>
             <groupId>com.whxiaoyu</groupId>
-            <artifactId>whxiaoyu-common-orm</artifactId>
+            <artifactId>whxiaoyu-component-orm-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.whxiaoyu</groupId>
-            <artifactId>whxiaoyu-common-security</artifactId>
+            <artifactId>whxiaoyu-component-security-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
 

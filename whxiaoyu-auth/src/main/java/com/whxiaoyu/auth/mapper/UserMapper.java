@@ -1,6 +1,6 @@
 package com.whxiaoyu.auth.mapper;
 
-import com.whxiaoyu.common.core.dto.UserDto;
+import com.whxiaoyu.component.dto.User;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -14,5 +14,5 @@ public interface UserMapper {
      * @return userInfo
      */
     @Select({"select * from sys_user where username = #{username} and del_flag = '0' limit 1"})
-    UserDto getUserDto(String username);
+    User getUserDto(String username);
 }

@@ -11,8 +11,8 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>whxiaoyu-components</module>
         <module>whxiaoyu-auth</module>
-        <module>whxiaoyu-common</module>
         <module>whxiaoyu-uc</module>
         <module>whxiaoyu-message</module>
         <module>whxiaoyu-gateway</module>
