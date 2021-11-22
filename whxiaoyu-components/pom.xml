@@ -19,7 +19,7 @@
 		<module>whxiaoyu-component-orm-starter</module>
 		<module>whxiaoyu-component-feign-sentinel-starter</module>
 		<module>whxiaoyu-component-security-starter</module>
-
+		<module>whxiaoyu-component-oss-starter</module>
 	</modules>
 
 
