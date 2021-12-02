@@ -30,15 +30,15 @@ public class OssCondition extends SpringBootCondition {
         try {
             BindResult<OssType> specified = Binder.get(environment).bind("oss.type", OssType.class);
             if (!specified.isBound()) {
-                return ConditionOutcome.match(message.because("automatic cache type"));
+                return ConditionOutcome.match(message.because("automatic oss type"));
             }
             OssType required = OssConfigurations.getType(((AnnotationMetadata) metadata).getClassName());
             if (specified.get() == required) {
-                return ConditionOutcome.match(message.because(specified.get() + " cache type"));
+                return ConditionOutcome.match(message.because(specified.get() + " oss type"));
             }
         }
         catch (BindException ex) {
         }
-        return ConditionOutcome.noMatch(message.because("unknown cache type"));
+        return ConditionOutcome.noMatch(message.because("unknown oss type"));
     }
 }

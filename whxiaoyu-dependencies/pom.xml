@@ -37,6 +37,7 @@
                 <artifactId>feign-okhttp</artifactId>
                 <version>${feign-okhttp.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

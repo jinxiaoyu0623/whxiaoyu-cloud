@@ -9,37 +9,32 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>whxiaoyu-component-exception-starter</artifactId>
-    <description>异常组件</description>
+    <artifactId>whxiaoyu-component-lock-starter</artifactId>
+    <description>锁组件</description>
     <packaging>jar</packaging>
+
 
     <dependencies>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.whxiaoyu</groupId>
-            <artifactId>whxiaoyu-component-dto</artifactId>
+            <artifactId>whxiaoyu-component-exception-starter</artifactId>
             <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.whxiaoyu</groupId>
-            <artifactId>whxiaoyu-component-validation-starter</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
         </dependency>
 
     </dependencies>
