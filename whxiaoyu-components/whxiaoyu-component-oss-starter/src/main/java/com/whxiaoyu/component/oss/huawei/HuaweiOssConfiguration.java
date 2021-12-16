@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * 华为云存储配置
  * @author jinxiaoyu
  */
 @RequiredArgsConstructor
-@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass({ObsClient.class})
 @Conditional(OssCondition.class)
 public class HuaweiOssConfiguration {

@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * 自建min-io配置
  * @author jinxiaoyu
  */
 @RequiredArgsConstructor
-@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass({MinioClient.class})
 @Conditional(OssCondition.class)
 public class MinioOssConfiguration {

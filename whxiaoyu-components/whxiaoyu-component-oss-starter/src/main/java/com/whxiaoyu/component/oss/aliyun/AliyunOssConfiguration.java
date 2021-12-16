@@ -10,13 +10,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Configuration;
 
 /**
+ * 阿里云配置
  * @author jinxiaoyu
  */
 @RequiredArgsConstructor
-@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass({OSSClient.class})
 @Conditional(OssCondition.class)
 public class AliyunOssConfiguration {
