@@ -21,6 +21,7 @@
 		<module>whxiaoyu-component-security-starter</module>
 		<module>whxiaoyu-component-oss-starter</module>
 		<module>whxiaoyu-component-lock-starter</module>
+		<module>whxiaoyu-component-job-starter</module>
 	</modules>
 
 

@@ -1,9 +1,9 @@
 package com.whxiaoyu.component.sentinel.feign;
 
 import feign.Target;
-import feign.hystrix.FallbackFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cglib.proxy.Enhancer;
+import org.springframework.cloud.openfeign.FallbackFactory;
 
 /**
  * @author jinxiaoyu

@@ -2,6 +2,10 @@ server:
   port: 4002
 
 spring:
+  main:
+    banner-mode: off
+#    allow-bean-definition-overriding: true
+
   application:
     name: whxiaoyu-uc
 
@@ -21,9 +25,6 @@ spring:
         extension-configs:
           - data-id: ${spring.application.name}.yaml
             refresh: true
-
-  main:
-    allow-bean-definition-overriding: true
 
   security:
     user:

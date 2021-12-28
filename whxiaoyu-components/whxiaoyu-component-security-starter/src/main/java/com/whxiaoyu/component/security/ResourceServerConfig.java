@@ -25,11 +25,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	 */
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception{
-		//允许使用iframe 嵌套
-		httpSecurity.headers().frameOptions().disable();
 		httpSecurity.authorizeRequests()
 				.antMatchers("/user/info").access("#oauth2.hasScope('user:read')")
-				.anyRequest().access("@webSecurityExpressions.check(authentication,request)")
+//				.anyRequest().access("@webSecurityExpressions.check(authentication,request)")
+				.anyRequest().authenticated()
 				.and()
 				.csrf().disable();
 	}

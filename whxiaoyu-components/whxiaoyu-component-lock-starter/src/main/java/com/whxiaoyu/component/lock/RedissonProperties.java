@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "spring.redission")
+@ConfigurationProperties(prefix = "spring.redisson")
 public class RedissonProperties {
 
     private final Integer DEFAULT_DATABASE = 0;

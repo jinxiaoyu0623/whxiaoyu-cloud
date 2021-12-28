@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +26,7 @@ public class RemoveTokenEndpoint {
     @RequestMapping(value = "/auth/removeToken",method = {RequestMethod.GET,RequestMethod.POST})
     public ResponseResult<String> removeToken(HttpServletRequest request) {
         String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
-        if (StringUtils.isEmpty(authorization)) {
+        if (ObjectUtils.isEmpty(authorization)) {
             return ResponseResult.error(AuthErrorTypeEnum.INVALID_TOKEN);
         }
         String tokenValue = authorization.replace(OAuth2AccessToken.BEARER_TYPE, "").trim();

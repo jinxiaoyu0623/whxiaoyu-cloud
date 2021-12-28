@@ -3,7 +3,6 @@ package com.whxiaoyu.component.lock.aspect;
 import com.whxiaoyu.component.dto.ResponseResult;
 import com.whxiaoyu.component.exception.BusinessException;
 import com.whxiaoyu.component.exception.CustomizeErrorType;
-import com.whxiaoyu.component.lock.LockExpressionEvaluator;
 import com.whxiaoyu.component.lock.annotation.JLock;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +32,6 @@ public class JLockAspect {
 
     private final RedissonClient redissonClient;
 
-    private LockExpressionEvaluator evaluator = new LockExpressionEvaluator();
 
     /***
      * 定义controller切入点拦截规则，拦截jLock注解的业务方法

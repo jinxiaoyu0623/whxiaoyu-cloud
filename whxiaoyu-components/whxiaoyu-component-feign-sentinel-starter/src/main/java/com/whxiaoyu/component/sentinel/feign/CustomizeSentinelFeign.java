@@ -1,13 +1,12 @@
 package com.whxiaoyu.component.sentinel.feign;
 
 import com.alibaba.cloud.sentinel.feign.SentinelContractHolder;
-import com.alibaba.cloud.sentinel.feign.SentinelInvocationHandler;
 import feign.Contract;
 import feign.Feign;
 import feign.InvocationHandlerFactory;
 import feign.Target;
-import feign.hystrix.FallbackFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.cloud.openfeign.FeignContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

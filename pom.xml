@@ -15,10 +15,10 @@
         <module>whxiaoyu-components</module>
         <module>whxiaoyu-auth</module>
         <module>whxiaoyu-uc</module>
-        <module>whxiaoyu-message</module>
+<!--        <module>whxiaoyu-message</module>-->
         <module>whxiaoyu-gateway</module>
         <module>whxiaoyu-devops</module>
-        <module>whxiaoyu-sso-client</module>
+<!--        <module>whxiaoyu-sso-client</module>-->
     </modules>
 
     <properties>
@@ -28,12 +28,11 @@
         <!-- Project revision -->
         <revision>1.0.0-SNAPSHOT</revision>
 
-        <spring-boot.version>2.3.9.RELEASE</spring-boot.version>
-        <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
-        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
-        <spring-boot-admin.version>2.3.1</spring-boot-admin.version>
-        <mybatis-plus.version>3.3.2</mybatis-plus.version>
-        <redisson.version>3.16.1</redisson.version>
+        <spring-boot.version>2.5.8</spring-boot.version>
+        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
+        <spring-cloud.version>2020.0.5</spring-cloud.version>
+        <spring-boot-admin.version>2.5.5</spring-boot-admin.version>
+
     </properties>
 
     <dependencies>
@@ -68,6 +67,15 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>com.whxiaoyu</groupId>
+                <artifactId>whxiaoyu-dependencies</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -93,27 +101,6 @@
             </dependency>
 
             <dependency>
-                <groupId>com.whxiaoyu</groupId>
-                <artifactId>whxiaoyu-dependencies</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-                <version>${spring-boot.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter-tomcat</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-
-            <dependency>
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-dependencies</artifactId>
                 <version>${spring-boot-admin.version}</version>
@@ -121,18 +108,6 @@
                 <scope>import</scope>
             </dependency>
 
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson</artifactId>
-                <version>${redisson.version}</version>
-            </dependency>
 
         </dependencies>
     </dependencyManagement>
