@@ -19,7 +19,6 @@
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>com.whxiaoyu</groupId>
             <artifactId>whxiaoyu-component-exception-starter</artifactId>

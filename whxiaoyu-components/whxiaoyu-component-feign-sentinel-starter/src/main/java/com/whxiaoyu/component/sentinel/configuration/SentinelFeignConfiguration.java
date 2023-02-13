@@ -24,7 +24,7 @@ public class SentinelFeignConfiguration {
     @Bean
     @Scope("prototype")
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(name = "feign.sentinel.enabled")
+    @ConditionalOnProperty(name = "feign.sentinel.enabled",havingValue = "true")
     public Feign.Builder feignSentinelBuilder() {
         return CustomizeSentinelFeign.builder().requestInterceptor(new FeignRequestInterceptor());
     }

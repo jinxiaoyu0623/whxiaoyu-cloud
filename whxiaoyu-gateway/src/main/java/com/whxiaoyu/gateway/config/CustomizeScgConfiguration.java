@@ -18,7 +18,7 @@ public class CustomizeScgConfiguration {
 
     @Bean
     public BlockRequestHandler blockRequestHandler() {
-        return (exchange, t) -> ServerResponse.status(444).contentType(MediaType.APPLICATION_JSON)
+        return (exchange, throwable) -> ServerResponse.status(444).contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(ResponseResult.error(SystemErrorTypeEnum.SYSTEM_BUSY)));
     }
 }

@@ -12,7 +12,6 @@ import java.lang.annotation.*;
 
 /**
  * @author jinxiaoyu
- * @date 2020/08/18 13:25
  */
 @Documented
 @Inherited

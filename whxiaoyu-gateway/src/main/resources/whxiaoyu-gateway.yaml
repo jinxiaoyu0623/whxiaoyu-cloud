@@ -62,11 +62,21 @@ spring:
 
       # nacos 网关流控配置数据源 是否加载数据源信息可查看日志 sentinel-record.log.**
       datasource:
-        ds:
+        gw-flow:
           nacos:
             server-addr: ${spring.cloud.nacos.discovery.server-addr}
-            data_id: ${spring.application.name}-gw-flow-rules.json
+            data_id: ${spring.application.name}-gw-flow-rules
             group_id: SENTINEL_GROUP
             data-type: json
             # 配置表示该数据源中的规则属于哪种类型的规则(flow，degrade，authority，system, param-flow, gw-flow, gw-api-group
             rule_type: gw-flow
+
+
+       degrade:
+         nacos:
+           server-addr: ${spring.cloud.nacos.discovery.server-addr}
+           data_id: ${spring.application.name}-degrade-rules
+           group_id: SENTINEL_GROUP
+           data-type: json
+           # 配置表示该数据源中的规则属于哪种类型的规则(flow，degrade，authority，system, param-flow, gw-flow, gw-api-group
+           rule_type: degrade
