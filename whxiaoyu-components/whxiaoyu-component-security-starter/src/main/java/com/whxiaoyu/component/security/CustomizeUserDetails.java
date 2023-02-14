@@ -1,6 +1,6 @@
 package com.whxiaoyu.component.security;
 
-import com.whxiaoyu.component.dto.User;
+import com.whxiaoyu.component.core.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;

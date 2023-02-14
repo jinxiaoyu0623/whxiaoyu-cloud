@@ -26,16 +26,21 @@
     </div>
 </nav>
 <div style="padding-top: 80px;width: 300px; color: #555; margin:0px auto;">
-    <form name='confirmationForm' th:action="@{/oauth/authorize}" method='post'>
-        <input name='user_oauth_approval' value='true' type='hidden'/>
+    <form name='confirmationForm' th:action="@{/oauth2/authorize}" method='post'>
+        <input type="hidden" name="client_id" th:value="${clientId}">
+        <input type="hidden" name="state" th:value="${state}">
+        <input type="hidden" th:each="scope:${scopes}" th:name="scope" th:value="${scope.scope}">
         <p>
-            <a href="#" target="_blank">[[${client}]]</a> 将获得以下权限：</p>
+            <a href="#" target="_blank">[[${clientName}]]</a> 将获得以下权限：</p>
         <ul class="list-group">
             <li class="list-group-item">
                 <div th:each="scope:${scopes}">
-                    <input type="hidden" th:name="${'scope.' + scope}" value="true"/>
-                    <input type="checkbox" disabled checked="checked"/>
-                    <label>昵称，头像和性别</label>
+                    <input type="checkbox" th:value="${scope.scope}" disabled checked/>
+                    <label th:text="${scope.description}">昵称，头像和性别</label>
+                </div>
+                <div th:each="scope:${previouslyApprovedScopes}">
+                    <input type="checkbox" th:value="${scope.scope}" disabled checked/>
+                    <label th:text="${scope.description}">昵称，头像和性别</label>
                 </div>
             </li>
         </ul>

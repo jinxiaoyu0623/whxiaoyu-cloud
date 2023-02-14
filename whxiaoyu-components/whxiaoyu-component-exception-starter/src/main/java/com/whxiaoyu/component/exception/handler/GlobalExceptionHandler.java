@@ -1,8 +1,7 @@
 package com.whxiaoyu.component.exception.handler;
 
 
-
-import com.whxiaoyu.component.dto.ResponseResult;
+import com.whxiaoyu.component.core.ResponseResult;
 import com.whxiaoyu.component.exception.BusinessException;
 import com.whxiaoyu.component.exception.enums.SystemErrorTypeEnum;
 import lombok.extern.slf4j.Slf4j;

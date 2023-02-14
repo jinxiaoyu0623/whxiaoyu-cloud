@@ -19,3 +19,9 @@ whxiaoyi-cloud 基于spring-cloud-alibaba构建的微服务生态，减少重复
 3.  提交代码
 4.  新建 Pull Request
 
+
+各个版本依赖
+
+2.5.x for spring boot 2.5.8 | spring cloud 2020.0.5 | alibaba-cloud 2021.1
+2.7.x for spring boot 2.7.8 | spring cloud 2021.0.5 | alibaba-cloud 2021.1
+

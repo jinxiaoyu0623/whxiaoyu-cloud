@@ -1,6 +1,6 @@
 package com.whxiaoyu.component.sentinel.feign;
 
-import com.whxiaoyu.component.dto.ResponseResult;
+import com.whxiaoyu.component.core.ResponseResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cglib.proxy.MethodInterceptor;

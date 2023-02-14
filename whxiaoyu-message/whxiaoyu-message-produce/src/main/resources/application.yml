@@ -1,0 +1,14 @@
+server:
+  port: 3003
+
+spring:
+  application:
+    name: message-produce
+
+rocketmq:
+  name-server: 192.168.3.189:9876
+
+  producer:
+    group: transactionGroup
+
+

@@ -1,6 +1,6 @@
 package com.whxiaoyu.component.lock.aspect;
 
-import com.whxiaoyu.component.dto.ResponseResult;
+import com.whxiaoyu.component.core.ResponseResult;
 import com.whxiaoyu.component.exception.BusinessException;
 import com.whxiaoyu.component.exception.CustomizeErrorType;
 import com.whxiaoyu.component.lock.annotation.JLock;

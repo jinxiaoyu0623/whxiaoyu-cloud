@@ -2,7 +2,7 @@ package com.whxiaoyu.uc.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.whxiaoyu.component.dto.ResponseResult;
+import com.whxiaoyu.component.core.ResponseResult;
 import com.whxiaoyu.uc.entity.SysRole;
 import com.whxiaoyu.uc.service.ISysRoleService;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package com.whxiaoyu.gateway.config;
 
 import com.alibaba.csp.sentinel.adapter.gateway.sc.callback.BlockRequestHandler;
-import com.whxiaoyu.component.dto.ResponseResult;
+import com.whxiaoyu.component.core.ResponseResult;
 import com.whxiaoyu.component.exception.enums.SystemErrorTypeEnum;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

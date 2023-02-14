@@ -1,6 +1,6 @@
 package com.whxiaoyu.component.exception.enums;
 
-import com.whxiaoyu.component.dto.ErrorType;
+import com.whxiaoyu.component.core.ErrorType;
 import lombok.Getter;
 
 /**

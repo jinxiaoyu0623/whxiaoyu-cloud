@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.whxiaoyu.component.validation.config.ValidatorConfig

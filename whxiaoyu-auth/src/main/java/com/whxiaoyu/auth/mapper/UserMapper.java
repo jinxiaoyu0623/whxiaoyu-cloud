@@ -1,6 +1,6 @@
 package com.whxiaoyu.auth.mapper;
 
-import com.whxiaoyu.component.dto.User;
+import com.whxiaoyu.component.core.User;
 import org.apache.ibatis.annotations.Select;
 
 /**

@@ -44,7 +44,7 @@ public class SecurityBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
 		}
 
 		GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
-		beanDefinition.setBeanClass(ResourceServerConfig.class);
+		//beanDefinition.setBeanClass(ResourceServerConfig.class);
 		registry.registerBeanDefinition(RESOURCE_SERVER_CONFIGURER, beanDefinition);
 	}
 }

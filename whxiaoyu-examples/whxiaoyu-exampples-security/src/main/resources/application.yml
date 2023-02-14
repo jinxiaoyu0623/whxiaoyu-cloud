@@ -1,0 +1,43 @@
+server:
+  port: 4003
+
+spring:
+  application:
+    name: whxiaoyu-examples-security
+
+  security:
+    # 放行的地址
+    ignore:
+      urls:
+        - /api
+
+    oauth2:
+      # 启用@EnableOauth2Client需要配置
+      client:
+        registration:
+          client:
+            client-id: zkzngz
+            client-secret: secret
+            scope: openid
+            redirect-uri: http://127.0.0.1:${server.port}/login/code
+            authorization-grant-type: authorization_code
+            provider: oidc-provider
+
+        provider:
+          oidc-provider:
+            issuer-uri: http://localhost:4001
+
+          oauth-provider:
+            authorization-uri: http://localhost:4001/oauth2/authorize
+            token-uri: http://localhost:4001/oauth2/token
+            user-info-uri: http://localhost:4001/userinfo
+            user-info-authentication-method: header
+            user-name-attribute: sub
+            jwk-set-uri: http://localhost:4001/oauth2/jwks
+
+
+      # 启用@EnableResourceServer需要配置
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:4001/oauth2/jwks
+

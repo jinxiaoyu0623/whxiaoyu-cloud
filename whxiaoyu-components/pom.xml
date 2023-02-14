@@ -10,19 +10,19 @@
 	</parent>
 
 	<artifactId>whxiaoyu-components</artifactId>
-	<packaging>pom</packaging>
 
 	<modules>
-		<module>whxiaoyu-component-dto</module>
-		<module>whxiaoyu-component-exception-starter</module>
+		<module>whxiaoyu-component-core</module>
 		<module>whxiaoyu-component-validation-starter</module>
+		<module>whxiaoyu-component-exception-starter</module>
 		<module>whxiaoyu-component-orm-starter</module>
+		<module>whxiaoyu-component-lock-starter</module>
+		<module>whxiaoyu-component-oss-starter</module>
 		<module>whxiaoyu-component-feign-sentinel-starter</module>
 		<module>whxiaoyu-component-security-starter</module>
-		<module>whxiaoyu-component-oss-starter</module>
-		<module>whxiaoyu-component-lock-starter</module>
-		<module>whxiaoyu-component-job-starter</module>
 	</modules>
+
+	<packaging>pom</packaging>
 
 
 </project>

@@ -30,7 +30,7 @@
 
         <dependency>
             <groupId>com.whxiaoyu</groupId>
-            <artifactId>whxiaoyu-component-dto</artifactId>
+            <artifactId>whxiaoyu-component-core</artifactId>
             <version>${project.version}</version>
         </dependency>
 

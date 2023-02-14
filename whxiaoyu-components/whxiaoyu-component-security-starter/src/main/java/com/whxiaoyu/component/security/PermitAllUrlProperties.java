@@ -7,7 +7,7 @@ import java.util.Set;
  * 对外直接暴露URL
  * @author jinxiaoyu
  */
-@ConfigurationProperties(prefix = "security.ignore")
+@ConfigurationProperties(prefix = "spring.security.ignore")
 public class PermitAllUrlProperties {
 
     private Set<String> urls;

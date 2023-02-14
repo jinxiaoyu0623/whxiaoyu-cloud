@@ -1,7 +1,7 @@
 package com.whxiaoyu.gateway.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.whxiaoyu.component.dto.ResponseResult;
+import com.whxiaoyu.component.core.ResponseResult;
 import com.whxiaoyu.component.exception.enums.SystemErrorTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;

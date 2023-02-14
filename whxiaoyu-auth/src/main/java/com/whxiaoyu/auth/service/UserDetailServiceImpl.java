@@ -1,8 +1,8 @@
 package com.whxiaoyu.auth.service;
 
 import com.whxiaoyu.auth.mapper.UserMapper;
-import com.whxiaoyu.component.dto.User;
-import com.whxiaoyu.component.security.CustomizeUserDetails;
+import com.whxiaoyu.auth.provider.CustomizeUserDetails;
+import com.whxiaoyu.component.core.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

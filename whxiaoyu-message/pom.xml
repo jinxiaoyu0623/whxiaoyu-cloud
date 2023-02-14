@@ -12,6 +12,9 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>whxiaoyu-message-core</module>
+        <module>whxiaoyu-message-consume</module>
+        <module>whxiaoyu-message-produce</module>
         <module>whxiaoyu-message-socket</module>
     </modules>
 

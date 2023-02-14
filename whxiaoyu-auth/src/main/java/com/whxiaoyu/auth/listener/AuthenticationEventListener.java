@@ -6,7 +6,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.authentication.event.AuthenticationFailureBadCredentialsEvent;
 import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
 import org.springframework.security.authentication.event.LogoutSuccessEvent;
-import org.springframework.security.oauth2.client.filter.OAuth2AuthenticationFailureEvent;
 import org.springframework.stereotype.Component;
 
 /**
@@ -45,12 +44,5 @@ public class AuthenticationEventListener {
     }
 
 
-    /**
-     * oauth2认证失败事件
-     */
-    @Async("customizeTaskExecutor")
-    @EventListener(OAuth2AuthenticationFailureEvent.class)
-    public void oauthFailEvent(OAuth2AuthenticationFailureEvent event) {
-        log.info( "oauth fail : {} msg: {}",event.getAuthentication().getName(),event.getException().getMessage());
-    }
+
 }

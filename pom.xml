@@ -11,12 +11,14 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>whxiaoyu-dependencies</module>
-        <module>whxiaoyu-components</module>
         <module>whxiaoyu-auth</module>
-        <module>whxiaoyu-uc</module>
-        <module>whxiaoyu-gateway</module>
+        <module>whxiaoyu-components</module>
         <module>whxiaoyu-devops</module>
+        <module>whxiaoyu-examples</module>
+        <module>whxiaoyu-gateway</module>
+        <module>whxiaoyu-message</module>
+        <module>whxiaoyu-transaction</module>
+        <module>whxiaoyu-uc</module>
     </modules>
 
     <properties>
@@ -24,12 +26,26 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Project revision -->
-        <revision>1.0.0-SNAPSHOT</revision>
+        <revision>2.7.8</revision>
 
-        <spring-boot.version>2.5.8</spring-boot.version>
+        <spring-boot.version>2.7.8</spring-boot.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
-        <spring-cloud.version>2020.0.5</spring-cloud.version>
-        <spring-boot-admin.version>2.5.5</spring-boot-admin.version>
+        <spring-cloud.version>2021.0.5</spring-cloud.version>
+
+        <!-- oauth2 authorization-server -->
+        <authorization-server.version>0.3.1</authorization-server.version>
+
+        <spring-boot-admin.version>2.7.10</spring-boot-admin.version>
+
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <hutool.version>5.8.11</hutool.version>
+        <redisson.version>3.19.0</redisson.version>
+
+        <obs.version>3.22.3.1</obs.version>
+        <minio.version>8.4.6</minio.version>
+        <oss.version>3.15.2</oss.version>
+
+        <rocketmq-spring.version>2.2.2</rocketmq-spring.version>
 
     </properties>
 
@@ -45,11 +61,13 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -65,14 +83,6 @@
 
     <dependencyManagement>
         <dependencies>
-
-            <dependency>
-                <groupId>com.whxiaoyu</groupId>
-                <artifactId>whxiaoyu-dependencies</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -105,6 +115,71 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-oauth2-authorization-server</artifactId>
+                <version>${authorization-server.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.huaweicloud</groupId>
+                <artifactId>esdk-obs-java</artifactId>
+                <version>${obs.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${oss.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq-spring.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>commons-collections</artifactId>
+                        <groupId>commons-collections</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>commons-logging</artifactId>
+                        <groupId>commons-logging</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
 
 
         </dependencies>
