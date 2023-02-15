@@ -4,6 +4,7 @@ import com.whxiaoyu.component.core.User;
 import org.apache.ibatis.annotations.Select;
 
 /**
+ * user
  * @author jinxiaoyu
  */
 public interface UserMapper {
