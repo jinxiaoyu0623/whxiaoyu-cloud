@@ -1,5 +1,6 @@
 package com.whxiaoyu.component.lock.strategy;
 
+import cn.hutool.core.util.StrUtil;
 import com.whxiaoyu.component.lock.RedissonProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.config.Config;
@@ -23,7 +24,7 @@ public class ClusterRedissonConfigStrategy implements RedissonConfigStrategy {
             // 设置集群(cluster)节点的服务IP和端口
             for (String addr : addrs) {
                 config.useClusterServers().addNodeAddress(REDIS_CONNECTION_PREFIX + addr);
-                if (!StringUtils.isEmpty(password)) {
+                if (!StrUtil.isEmpty(password)) {
                     config.useClusterServers().setPassword(password);
                 }
             }

@@ -1,5 +1,6 @@
 package com.whxiaoyu.gateway.repository;
 
+import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -54,7 +55,7 @@ public class RedisRouteDefinitionRepository implements RouteDefinitionRepository
     @Override
     public Mono<Void> save(Mono<RouteDefinition> route) {
         return route.flatMap(r -> {
-            if (StringUtils.isEmpty(r.getId())) {
+            if (StrUtil.isEmpty(r.getId())) {
                 return Mono.error(new IllegalArgumentException("id may not be empty"));
             }
             try {

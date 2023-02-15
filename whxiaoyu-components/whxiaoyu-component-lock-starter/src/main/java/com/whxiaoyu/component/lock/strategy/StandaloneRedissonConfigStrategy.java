@@ -1,5 +1,6 @@
 package com.whxiaoyu.component.lock.strategy;
 
+import cn.hutool.core.util.StrUtil;
 import com.whxiaoyu.component.lock.RedissonProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.config.Config;
@@ -24,7 +25,7 @@ public class StandaloneRedissonConfigStrategy implements RedissonConfigStrategy 
             String redisAddr = REDIS_CONNECTION_PREFIX + address;
             config.useSingleServer().setAddress(redisAddr);
             config.useSingleServer().setDatabase(database);
-            if (!StringUtils.isEmpty(password)) {
+            if (!StrUtil.isEmpty(password)) {
                 config.useSingleServer().setPassword(password);
             }
         } catch (Exception e) {

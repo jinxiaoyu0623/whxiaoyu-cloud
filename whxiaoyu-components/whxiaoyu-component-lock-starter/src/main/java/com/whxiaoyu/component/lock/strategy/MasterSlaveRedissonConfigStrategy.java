@@ -1,6 +1,7 @@
 package com.whxiaoyu.component.lock.strategy;
 
 
+import cn.hutool.core.util.StrUtil;
 import com.whxiaoyu.component.lock.RedissonProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.config.Config;
@@ -30,7 +31,7 @@ public class MasterSlaveRedissonConfigStrategy implements RedissonConfigStrategy
 			String masterNodeAddr = addrs[0];
 			// 设置主节点ip
 			config.useMasterSlaveServers().setMasterAddress(masterNodeAddr);
-			if (!StringUtils.isEmpty(password)) {
+			if (!StrUtil.isEmpty(password)) {
 				config.useMasterSlaveServers().setPassword(password);
 			}
 			config.useMasterSlaveServers().setDatabase(database);

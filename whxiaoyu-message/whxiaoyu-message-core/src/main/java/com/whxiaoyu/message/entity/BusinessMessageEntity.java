@@ -14,5 +14,5 @@ public class BusinessMessageEntity {
 
     private String topic;
 
-    private Object body;
+    private String body;
 }

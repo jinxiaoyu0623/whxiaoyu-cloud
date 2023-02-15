@@ -1,5 +1,6 @@
 package com.whxiaoyu.component.lock.strategy;
 
+import cn.hutool.core.util.StrUtil;
 import com.whxiaoyu.component.lock.RedissonProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.config.Config;
@@ -28,7 +29,7 @@ public class SentinelRedissonConfigStrategy implements RedissonConfigStrategy {
 			// 设置redis配置文件sentinel.conf配置的sentinel别名
 			config.useSentinelServers().setMasterName(sentinelAliasName);
 			config.useSentinelServers().setDatabase(database);
-			if (!StringUtils.isEmpty(password)) {
+			if (!StrUtil.isEmpty(password)) {
 				config.useSentinelServers().setPassword(password);
 			}
 			// 设置哨兵节点的服务IP和端口

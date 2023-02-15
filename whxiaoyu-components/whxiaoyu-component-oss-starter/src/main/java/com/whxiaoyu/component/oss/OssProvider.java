@@ -17,8 +17,7 @@ public interface OssProvider {
      * @param file file
      * @param key  key
      */
-    @SneakyThrows(Exception.class)
-    void upload(String key, File file);
+    void upload(String key, File file) throws Exception;
 
 
     /**
@@ -27,8 +26,7 @@ public interface OssProvider {
      * @param key    key
      * @param stream stream
      */
-    @SneakyThrows(Exception.class)
-    void upload(String key, InputStream stream);
+    void upload(String key, InputStream stream) throws Exception;
 
     /**
      * 上传base64Data
@@ -36,8 +34,7 @@ public interface OssProvider {
      * @param key        key
      * @param base64Data base64Data
      */
-    @SneakyThrows(Exception.class)
-    void upload(String key, String base64Data);
+    void upload(String key, String base64Data) throws Exception;
 
 
     /**

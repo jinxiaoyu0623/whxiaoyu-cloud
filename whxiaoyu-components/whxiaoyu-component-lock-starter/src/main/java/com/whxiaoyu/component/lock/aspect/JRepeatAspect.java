@@ -14,6 +14,8 @@ import org.redisson.api.RSet;
 import org.redisson.api.RedissonClient;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 
+import java.time.Duration;
+
 /**
  * 防止重复提交拦截
  *
@@ -57,7 +59,7 @@ public class JRepeatAspect {
         RSet<Integer> rSet = redissonClient.getSet(key);
         if (rSet.isEmpty()) {
             rSet.add(1);
-            rSet.expire(jRepeat.expireTime(),jRepeat.timeUnit());
+            rSet.expire(Duration.ofMillis(jRepeat.expireTime()));
         } else {
             throw new BusinessException(new CustomizeErrorType(ResponseResult.DEFAULT_FAIL_CODE,jRepeat.message()));
         }
