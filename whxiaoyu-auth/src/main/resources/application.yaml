@@ -3,8 +3,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://192.168.10.189:3306/admin?characterEncoding=utf8&useSSL=false
-    username: xiaoyu
-    password: 1234
+    username: root
+    password: xiaoyu123
 
   redis:
     host: 127.0.0.1
