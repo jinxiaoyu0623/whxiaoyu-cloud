@@ -33,6 +33,7 @@ DevOps whxiaoyu-devops 运维服务
 #### 各个版本依赖
 
 2.5.x for spring boot 2.5.8 | spring cloud 2020.0.5 | alibaba-cloud 2021.1
+
 2.7.x for spring boot 2.7.8 | spring cloud 2021.0.5 | alibaba-cloud 2021.1
 
 
