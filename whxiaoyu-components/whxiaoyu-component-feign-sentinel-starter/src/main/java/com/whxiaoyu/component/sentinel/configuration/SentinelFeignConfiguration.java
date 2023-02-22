@@ -9,6 +9,7 @@ import com.whxiaoyu.component.sentinel.interceptor.FeignRequestInterceptor;
 import feign.Feign;
 import feign.RequestInterceptor;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
