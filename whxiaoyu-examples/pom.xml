@@ -14,6 +14,7 @@
 
     <modules>
         <module>whxiaoyu-exampples-security</module>
+        <module>whxiaoyu-examoles-sentinel</module>
     </modules>
 
 </project>

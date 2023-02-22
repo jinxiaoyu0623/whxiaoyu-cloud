@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: examples-sentinel
+
+feign:
+  sentinel:
+    enabled: true
