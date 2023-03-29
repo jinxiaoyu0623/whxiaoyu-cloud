@@ -20,6 +20,7 @@
 		<module>whxiaoyu-component-oss-starter</module>
 		<module>whxiaoyu-component-feign-sentinel-starter</module>
 		<module>whxiaoyu-component-security-starter</module>
+		<module>whxiaoyu-component-encryption-starter</module>
 	</modules>
 
 	<packaging>pom</packaging>

@@ -1,5 +1,7 @@
 package com.whxiaoyu.component.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,6 +36,7 @@ public class ResponseResult<T> implements Serializable {
     /**
      * 返回值
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
 
