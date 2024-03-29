@@ -3,185 +3,67 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-build</artifactId>
+        <version>3.1.6</version>
+        <relativePath/>
+    </parent>
+
     <groupId>com.whxiaoyu</groupId>
     <artifactId>whxiaoyu-cloud</artifactId>
     <version>${revision}</version>
-    <name>whxiaoyu-cloud</name>
-    <description>云平台</description>
     <packaging>pom</packaging>
 
-    <modules>
-        <module>whxiaoyu-auth</module>
-        <module>whxiaoyu-components</module>
-        <module>whxiaoyu-devops</module>
-        <module>whxiaoyu-examples</module>
-        <module>whxiaoyu-gateway</module>
-        <module>whxiaoyu-message</module>
-        <module>whxiaoyu-transaction</module>
-        <module>whxiaoyu-uc</module>
-    </modules>
 
     <properties>
         <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
         <!-- Project revision -->
-        <revision>2.7.8</revision>
+        <revision>2.7.18</revision>
 
-        <spring-boot.version>2.7.8</spring-boot.version>
-        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
-        <spring-cloud.version>2021.0.5</spring-cloud.version>
-
-        <!-- oauth2 authorization-server -->
-        <authorization-server.version>0.3.1</authorization-server.version>
-
-        <spring-boot-admin.version>2.7.10</spring-boot-admin.version>
-
-        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
-        <hutool.version>5.8.11</hutool.version>
-        <redisson.version>3.19.0</redisson.version>
-
-        <obs.version>3.22.3.1</obs.version>
-        <minio.version>8.4.6</minio.version>
-        <oss.version>3.15.2</oss.version>
-
-        <rocketmq-spring.version>2.2.2</rocketmq-spring.version>
+        <!-- Maven Plugin Versions -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <!-- JUnit 5 requires Surefire version 2.22.0 or higher -->
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.1.1</maven-javadoc-plugin.version>
 
     </properties>
 
+    <modules>
+        <module>whxiaoyu-cloud-dependencies</module>
+        <module>whxiaoyu-cloud-commons</module>
+        <module>whxiaoyu-cloud-starters</module>
+        <module>whxiaoyu-cloud-examples</module>
+        <module>whxiaoyu-cloud-auth</module>
+    </modules>
+
+
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
+
 
     <dependencyManagement>
         <dependencies>
-
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
+                <groupId>com.whxiaoyu</groupId>
+                <artifactId>whxiaoyu-cloud-dependencies</artifactId>
+                <version>${revision}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-dependencies</artifactId>
-                <version>${spring-boot-admin.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-core</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-oauth2-authorization-server</artifactId>
-                <version>${authorization-server.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-annotation</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson</artifactId>
-                <version>${redisson.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.huaweicloud</groupId>
-                <artifactId>esdk-obs-java</artifactId>
-                <version>${obs.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.minio</groupId>
-                <artifactId>minio</artifactId>
-                <version>${minio.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.aliyun.oss</groupId>
-                <artifactId>aliyun-sdk-oss</artifactId>
-                <version>${oss.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.rocketmq</groupId>
-                <artifactId>rocketmq-spring-boot-starter</artifactId>
-                <version>${rocketmq-spring.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>commons-collections</artifactId>
-                        <groupId>commons-collections</groupId>
-                    </exclusion>
-                    <exclusion>
-                        <artifactId>commons-logging</artifactId>
-                        <groupId>commons-logging</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-
-
         </dependencies>
     </dependencyManagement>
 
@@ -191,7 +73,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -226,35 +108,5 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>huawei-profile</id>
-
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>releases</id>
-                    <url>https://devrepo.devcloud.cn-east-3.huaweicloud.com/04/nexus/content/repositories/0aecfa93cf80f3ef0f74c01f73902400_1_0/</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </pluginRepository>
-            </pluginRepositories>
-
-            <distributionManagement>
-                <repository>
-                    <id>releases</id>
-                    <url>https://devrepo.devcloud.cn-east-3.huaweicloud.com/04/nexus/content/repositories/0aecfa93cf80f3ef0f74c01f73902400_1_0/</url>
-                </repository>
-                <snapshotRepository>
-                    <id>snapshots</id>
-                    <url>https://devrepo.devcloud.cn-east-3.huaweicloud.com/04/nexus/content/repositories/0aecfa93cf80f3ef0f74c01f73902400_2_0/</url>
-                </snapshotRepository>
-            </distributionManagement>
-
-        </profile>
-    </profiles>
 
 </project>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.whxiaoyu</groupId>
+		<artifactId>whxiaoyu-cloud</artifactId>
+		<version>${revision}</version>
+	</parent>
+
+	<artifactId>whxiaoyu-cloud-starters</artifactId>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>whxiaoyu-cloud-exception-starter</module>
+		<module>whxiaoyu-cloud-validation-starter</module>
+		<module>whxiaoyu-cloud-encryption-starter</module>
+		<module>whxiaoyu-cloud-orm-starter</module>
+		<module>whxiaoyu-cloud-oss-starter</module>
+		<module>whxiaoyu-cloud-lock-starter</module>
+		<module>whxiaoyu-cloud-openfeign-starter</module>
+		<module>whxiaoyu-cloud-security-starter</module>
+	</modules>
+
+
+</project>
