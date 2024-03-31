@@ -50,7 +50,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -90,7 +96,7 @@
                     <!--指定生成文档的使用的配置文件,配置文件放在自己的项目中-->
                     <configFile>${basedir}/src/main/resources/smart-doc.json</configFile>
                     <!--指定项目名称-->
-                    <projectName>测试</projectName>
+                    <projectName>whxiaoyu-cloud</projectName>
                     <!--smart-doc实现自动分析依赖树加载第三方依赖的源码，如果一些框架依赖库加载不到导致报错，这时请使用excludes排除掉-->
                 </configuration>
                 <executions>

@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * actuator安全配置
@@ -21,13 +22,8 @@ public class ActuatorSecurityConfig {
     @Order(2)
     public SecurityFilterChain actuatorSecurityFilterChain(HttpSecurity http) throws Exception {
         http.requestMatcher(EndpointRequest.toAnyEndpoint());
-        http.authorizeRequests(authorize -> authorize.anyRequest().hasRole("ENDPOINT_ADMIN"))
+        http.authorizeRequests(authorize -> authorize.anyRequest().hasRole("ADMIN"))
                 .httpBasic();
-        UserDetails user = User.withUsername("actuator")
-                .password("{noop}1234")
-                .roles("ENDPOINT_ADMIN")
-                .build();
-        http.userDetailsService(new InMemoryUserDetailsManager(user));
         return http.build();
     }
 

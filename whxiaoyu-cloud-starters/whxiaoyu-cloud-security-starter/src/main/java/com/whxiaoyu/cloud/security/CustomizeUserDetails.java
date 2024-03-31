@@ -4,11 +4,9 @@ import com.whxiaoyu.cloud.commons.core.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 
 /**
  * 自定义用户详情
@@ -22,13 +20,16 @@ public class CustomizeUserDetails implements UserDetails {
     @Setter
     private User user;
 
-    public CustomizeUserDetails(User user) {
+    private final Collection<? extends GrantedAuthority> authorities;
+
+    public CustomizeUserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
         this.user = user;
+        this.authorities = authorities;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+        return authorities;
     }
 
     @Override

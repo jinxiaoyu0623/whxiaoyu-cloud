@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: whxiaoyu-examples-security
+    name: security-example
 
   security:
     # 放行的地址
@@ -16,7 +16,7 @@ spring:
       client:
         registration:
           client:
-            client-id: zkzngz
+            client-id: xiaoyu-app
             client-secret: secret
             scope: openid
             redirect-uri: http://127.0.0.1:${server.port}/login/code
@@ -33,8 +33,6 @@ spring:
             user-info-uri: http://localhost:4001/userinfo
             user-info-authentication-method: header
             user-name-attribute: sub
-            jwk-set-uri: http://localhost:4001/oauth2/jwks
-
 
       # 启用@EnableResourceServer需要配置
       resourceserver:

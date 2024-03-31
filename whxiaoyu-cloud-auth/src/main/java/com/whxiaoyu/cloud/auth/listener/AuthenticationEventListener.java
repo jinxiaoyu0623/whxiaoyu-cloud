@@ -19,7 +19,7 @@ public class AuthenticationEventListener {
     /**
      * 表单登录成功事件
      */
-    @Async("customizeTaskExecutor")
+    @Async("asyncTaskExecutor")
     @EventListener(InteractiveAuthenticationSuccessEvent.class)
     public void formLoginSuccessEvent(InteractiveAuthenticationSuccessEvent event) {
         log.info( "login success : {}",event.getAuthentication().getName());
@@ -28,7 +28,7 @@ public class AuthenticationEventListener {
     /**
      * 登录失败事件
      */
-    @Async("customizeTaskExecutor")
+    @Async("asyncTaskExecutor")
     @EventListener(AuthenticationFailureBadCredentialsEvent.class)
     public void loginFailEvent(AuthenticationFailureBadCredentialsEvent event) {
         log.info( "login fail : {} msg: {}",event.getAuthentication().getName(),event.getException().getMessage());
@@ -37,7 +37,7 @@ public class AuthenticationEventListener {
     /**
      * 退出登录事件
      */
-    @Async("customizeTaskExecutor")
+    @Async("asyncTaskExecutor")
     @EventListener(LogoutSuccessEvent.class)
     public void logoutSuccessEvent(LogoutSuccessEvent event) {
         log.info( "logout success : {}",event.getAuthentication().getName());

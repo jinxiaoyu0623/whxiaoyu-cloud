@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * @author jinxiaoyu
@@ -37,8 +38,7 @@ public class WebSecurityConfig {
                 .failureUrl("/login?error")
                 .and()
                 .logout()
-                .logoutUrl("/logout").permitAll();
-        http.userDetailsService(userDetailsService());
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"));
         return http.build();
     }
 
@@ -46,5 +46,6 @@ public class WebSecurityConfig {
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailService();
     }
+
 
 }

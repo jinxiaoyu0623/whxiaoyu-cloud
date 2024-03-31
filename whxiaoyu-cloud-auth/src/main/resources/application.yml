@@ -1,10 +1,13 @@
+server:
+  port: 4001
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://192.168.10.189:3306/admin?characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/admin?characterEncoding=utf8&useSSL=false
     username: root
-    password: xiaoyu123
+    password:
 
   redis:
     host: 127.0.0.1
@@ -12,3 +15,10 @@ spring:
 mybatis-plus:
   global-config:
     banner: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health
+

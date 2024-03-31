@@ -14,10 +14,10 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 @Configuration
 @EnableAsync
-public class TaskExecutorConfig {
+public class AsyncTaskExecutorConfig {
 
     @Bean
-    public TaskExecutor customizeTaskExecutor() {
+    public TaskExecutor asyncTaskExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         //配置核心线程数
         taskExecutor.setCorePoolSize(2);
