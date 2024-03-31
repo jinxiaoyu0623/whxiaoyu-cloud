@@ -1,12 +1,14 @@
 package com.whxiaoyu.cloud.auth.config;
 
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import com.whxiaoyu.cloud.auth.jose.Jwks;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.whxiaoyu.cloud.auth.provider.CustomizeUserDetails;
+import com.whxiaoyu.cloud.auth.provider.CustomizeUserDetailsMixIn;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -18,6 +20,7 @@ import org.springframework.security.config.annotation.web.configuration.OAuth2Au
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.authorization.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.jackson2.SecurityJackson2Modules;
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -30,6 +33,7 @@ import org.springframework.security.oauth2.server.authorization.authentication.O
 import org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.config.ProviderSettings;
+import org.springframework.security.oauth2.server.authorization.jackson2.OAuth2AuthorizationServerJackson2Module;
 import org.springframework.security.oauth2.server.authorization.oidc.authentication.OidcUserInfoAuthenticationContext;
 import org.springframework.security.oauth2.server.authorization.oidc.authentication.OidcUserInfoAuthenticationToken;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
@@ -43,6 +47,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -50,11 +55,8 @@ import java.util.function.Function;
  *
  * @author jinxiaoyu
  */
-@RequiredArgsConstructor
 @Configuration
 public class AuthorizationServerConfig {
-
-    private final JdbcTemplate jdbcTemplate;
 
 
     @Bean
@@ -107,7 +109,7 @@ public class AuthorizationServerConfig {
      * 客户端配置
      */
     @Bean
-    public RegisteredClientRepository registeredClientRepository() {
+    public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
         return new JdbcRegisteredClientRepository(jdbcTemplate);
     }
 
@@ -125,16 +127,27 @@ public class AuthorizationServerConfig {
      * 授权同意配置
      */
     @Bean
-    public OAuth2AuthorizationConsentService authorizationConsentService(RegisteredClientRepository clientRepository) {
-        return new JdbcOAuth2AuthorizationConsentService(jdbcTemplate, clientRepository);
+    public OAuth2AuthorizationConsentService authorizationConsentService(JdbcTemplate jdbcTemplate, RegisteredClientRepository registeredClientRepository) {
+        return new JdbcOAuth2AuthorizationConsentService(jdbcTemplate, registeredClientRepository);
     }
 
     /**
      * 授权服务配置
      */
     @Bean
-    public OAuth2AuthorizationService authorizationService(RegisteredClientRepository clientRepository) {
-        return new JdbcOAuth2AuthorizationService(jdbcTemplate, clientRepository);
+    public OAuth2AuthorizationService authorizationService(JdbcTemplate jdbcTemplate,RegisteredClientRepository registeredClientRepository) {
+        JdbcOAuth2AuthorizationService authorizationService = new JdbcOAuth2AuthorizationService(jdbcTemplate, registeredClientRepository);
+        JdbcOAuth2AuthorizationService.OAuth2AuthorizationRowMapper rowMapper = new JdbcOAuth2AuthorizationService.OAuth2AuthorizationRowMapper(registeredClientRepository);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ClassLoader classLoader = JdbcOAuth2AuthorizationService.class.getClassLoader();
+        List<Module> securityModules = SecurityJackson2Modules.getModules(classLoader);
+        objectMapper.registerModules(securityModules);
+        objectMapper.registerModule(new OAuth2AuthorizationServerJackson2Module());
+        // You will need to write the Mixin for your class so Jackson can marshall it.
+        objectMapper.addMixIn(CustomizeUserDetails.class, CustomizeUserDetailsMixIn.class);
+        rowMapper.setObjectMapper(objectMapper);
+        authorizationService.setAuthorizationRowMapper(rowMapper);
+        return authorizationService;
     }
 
 

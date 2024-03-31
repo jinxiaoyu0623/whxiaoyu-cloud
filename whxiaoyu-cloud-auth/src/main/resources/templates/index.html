@@ -16,13 +16,9 @@
 
 <body class="sign_body">
 <div class="container form-margin-top">
-    <form class="form-signin" th:action="@{/login}" method="post">
-        <h2 class="form-signin-heading" align="center">统一认证服务</h2>
-        <input type="text" name="username" class="form-control form-margin-top" required autofocus autocomplete="off">
-        <input type="password" name="password" class="form-control" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">sign in</button>
-            <span style="color: red; " th:if="${#httpServletRequest.getParameter('error')}" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION?.message}"></span>
-    </form>
+    <div class="form-signin">
+        <h3 class="form-signin-heading" align="center">欢迎您：[[${name}]]</h3>
+    </div>
 </div>
 <footer>
     <p>support by: whxiaoyu</p>

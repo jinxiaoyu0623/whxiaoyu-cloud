@@ -1,6 +1,6 @@
 package com.whxiaoyu.cloud.auth.provider;
 
-import com.whxiaoyu.component.core.User;
+import com.whxiaoyu.cloud.commons.core.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -16,5 +16,5 @@ public interface UserMapper {
      * @return userInfo
      */
     @Select({"select * from sys_user where username = #{username} and del_flag = '0' limit 1"})
-    User getUserDto(String username);
+    User selectByUsername(String username);
 }

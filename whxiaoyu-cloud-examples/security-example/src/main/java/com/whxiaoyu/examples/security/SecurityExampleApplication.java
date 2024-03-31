@@ -1,17 +1,17 @@
 package com.whxiaoyu.examples.security;
 
 import com.whxiaoyu.cloud.security.annotation.EnableOauth2Client;
-import com.whxiaoyu.cloud.security.annotation.EnableResourceServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 // @EnableOauth2Client和@EnableResourceServer不可一起使用
 @EnableOauth2Client
 //@EnableResourceServer
-public class WhxiaoyuExampplesSecurityApplication {
+@SpringBootApplication
+public class SecurityExampleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WhxiaoyuExampplesSecurityApplication.class, args);
+        SpringApplication.run(SecurityExampleApplication.class, args);
     }
 
 }

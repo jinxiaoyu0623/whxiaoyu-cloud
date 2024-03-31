@@ -29,8 +29,10 @@ public class Oauth2ClientConfiguration {
                     }
                     authorizeRequests.anyRequest().authenticated();
                 })
-                .oauth2Login(oauth2Login -> oauth2Login.loginProcessingUrl("/login/code"))
-                .oauth2Client();
+                .oauth2Login(oauth2Login -> oauth2Login.loginProcessingUrl("/login/oauth2/code"))
+                .oauth2Client()
+                .and()
+                .logout();
         return httpSecurity.build();
     }
 }

@@ -1,6 +1,7 @@
 package com.whxiaoyu.cloud.commons.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ import java.util.Map;
  */
 @Getter
 @Setter
+@JsonDeserialize(as = User.class)
 public class User extends Dto {
 
     private static final long serialVersionUID = 3207159221340062422L;
